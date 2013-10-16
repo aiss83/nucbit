@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="MarkII" />
+		<Option pch_mode="2" />
+		<Option compiler="armelfgcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\MarkII" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="armelfgcc" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\MarkII" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="armelfgcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-mthumb" />
+			<Add option="-Os" />
+			<Add option="-O" />
+			<Add option="-Wall" />
+			<Add option="-mcpu=cortex-m3" />
+			<Add option="-Wno-strict-aliasing" />
+			<Add option="-ffunction-sections" />
+			<Add option="-fdata-sections" />
+			<Add option="-DCONTIKI=1" />
+			<Add option="-DCONTIKI_TARGET_MB851=1" />
+			<Add option='-DPLATFORM_HEADER=\&quot;hal/micro/cortexm3/compiler/gnu.h\&quot;' />
+			<Add option='-DBOARD_HEADER=\&quot;board.h\&quot;' />
+			<Add option="-DBOARD_MB851" />
+			<Add option="-DCORTEXM3" />
+			<Add option="-DCORTEXM3_STM32W108" />
+			<Add option="-DPHY_STM32W108XX" />
+			<Add option="-DDISABLE_WATCHDOG" />
+			<Add option="-DENABLE_ADC_EXTENDED_RANGE_BROKEN" />
+			<Add option='-D__SOURCEFILE__=\&quot;__FILE__\&quot;' />
+			<Add option="-DAUTOSTART_ENABLE" />
+			<Add directory="core" />
+			<Add directory="core\dev" />
+			<Add directory="core\sys" />
+			<Add directory="core\net" />
+			<Add directory="core\net\mac" />
+			<Add directory="platform\NucBee" />
+			<Add directory="platform\NucBee\dev" />
+			<Add directory="cpu\stm32w108" />
+			<Add directory="cpu\stm32w108\dev" />
+			<Add directory="core\lib" />
+			<Add directory="core\net\rime" />
+			<Add directory="core\loader" />
+			<Add directory="cpu\stm32w108\hal\micro\cortexm3" />
+			<Add directory="cpu\stm32w108\hal\micro\cortexm3\stm32w108" />
+			<Add directory="cpu\stm32w108\" />
+			<Add directory="cpu\stm32w108\hal" />
+		</Compiler>
+		<Linker>
+			<Add option="-mcpu=cortex-m3" />
+			<Add option="-Wl,-T -Xlinker cpu/stm32w108/gnu.ld" />
+			<Add option="-Wl,-static" />
+			<Add option="-u Default_Handler" />
+			<Add option="-nostartfiles" />
+			<Add option="-Wl,-Map -Xlinker contiki-mb851.map" />
+			<Add option="-Wl,--gc-sections" />
+			<Add option="-Wl,--section-start=.coffee=0x801F800" />
+			<Add library="cpu\stm32w108\simplemac\library\simplemac-library-gnu.a" />
+			<Add library="cpu\stm32w108\lib\e_stdio_intonly_thumb2.a" />
+		</Linker>
+		<Unit filename="app\example-mesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\cfs\cfs.h" />
+		<Unit filename="core\contiki-lib.h" />
+		<Unit filename="core\contiki-net.h" />
+		<Unit filename="core\contiki-version.h" />
+		<Unit filename="core\contiki.h" />
+		<Unit filename="core\dev\button-sensor.h" />
+		<Unit filename="core\dev\leds.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\dev\leds.h" />
+		<Unit filename="core\dev\nullradio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\dev\nullradio.h" />
+		<Unit filename="core\dev\radio-sensor.h" />
+		<Unit filename="core\dev\radio.h" />
+		<Unit filename="core\dev\serial-line.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\dev\serial-line.h" />
+		<Unit filename="core\dev\slip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\dev\slip.h" />
+		<Unit filename="core\dev\watchdog.h" />
+		<Unit filename="core\lib\assert.h" />
+		<Unit filename="core\lib\checkpoint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\checkpoint.h" />
+		<Unit filename="core\lib\crc16.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\crc16.h" />
+		<Unit filename="core\lib\ctk-filedialog.h" />
+		<Unit filename="core\lib\ctk-textentry-checkbox.h" />
+		<Unit filename="core\lib\ctk-textentry-cmdline.h" />
+		<Unit filename="core\lib\ctk-textentry-multiline.h" />
+		<Unit filename="core\lib\gcr.h" />
+		<Unit filename="core\lib\ifft.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\ifft.h" />
+		<Unit filename="core\lib\libconio.h" />
+		<Unit filename="core\lib\list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\list.h" />
+		<Unit filename="core\lib\me.h" />
+		<Unit filename="core\lib\me_tabs.h" />
+		<Unit filename="core\lib\memb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\memb.h" />
+		<Unit filename="core\lib\mmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\mmem.h" />
+		<Unit filename="core\lib\petsciiconv.h" />
+		<Unit filename="core\lib\print-stats.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\print-stats.h" />
+		<Unit filename="core\lib\random.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\random.h" />
+		<Unit filename="core\lib\ringbuf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\ringbuf.h" />
+		<Unit filename="core\lib\sensors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\lib\sensors.h" />
+		<Unit filename="core\loader\elfloader-arch.h" />
+		<Unit filename="core\loader\elfloader.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\loader\elfloader.h" />
+		<Unit filename="core\loader\symtab.h" />
+		<Unit filename="core\net\assert.h" />
+		<Unit filename="core\net\checkpoint.h" />
+		<Unit filename="core\net\crc16.h" />
+		<Unit filename="core\net\ctk-filedialog.h" />
+		<Unit filename="core\net\ctk-textentry-checkbox.h" />
+		<Unit filename="core\net\ctk-textentry-cmdline.h" />
+		<Unit filename="core\net\ctk-textentry-multiline.h" />
+		<Unit filename="core\net\dhcpc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\dhcpc.h" />
+		<Unit filename="core\net\gcr.h" />
+		<Unit filename="core\net\hc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\hc.h" />
+		<Unit filename="core\net\ifft.h" />
+		<Unit filename="core\net\libconio.h" />
+		<Unit filename="core\net\list.h" />
+		<Unit filename="core\net\mac\contikimac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\contikimac.h" />
+		<Unit filename="core\net\mac\csma.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\csma.h" />
+		<Unit filename="core\net\mac\ctdma_mac.h" />
+		<Unit filename="core\net\mac\cxmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\cxmac.h" />
+		<Unit filename="core\net\mac\frame802154.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\frame802154.h" />
+		<Unit filename="core\net\mac\framer-802154.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\framer-802154.h" />
+		<Unit filename="core\net\mac\framer-nullmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\framer-nullmac.h" />
+		<Unit filename="core\net\mac\framer.h" />
+		<Unit filename="core\net\mac\lpp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\lpp.h" />
+		<Unit filename="core\net\mac\mac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\mac.h" />
+		<Unit filename="core\net\mac\nullmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\nullmac.h" />
+		<Unit filename="core\net\mac\nullrdc-noframer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\nullrdc-noframer.h" />
+		<Unit filename="core\net\mac\nullrdc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\nullrdc.h" />
+		<Unit filename="core\net\mac\phase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\phase.h" />
+		<Unit filename="core\net\mac\rdc.h" />
+		<Unit filename="core\net\mac\sicslowmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\sicslowmac.h" />
+		<Unit filename="core\net\mac\tdma_mac.h" />
+		<Unit filename="core\net\mac\xmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\mac\xmac.h" />
+		<Unit filename="core\net\me.h" />
+		<Unit filename="core\net\me_tabs.h" />
+		<Unit filename="core\net\memb.h" />
+		<Unit filename="core\net\mmem.h" />
+		<Unit filename="core\net\neighbor-attr.h" />
+		<Unit filename="core\net\neighbor-info.h" />
+		<Unit filename="core\net\netstack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\netstack.h" />
+		<Unit filename="core\net\packetbuf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\packetbuf.h" />
+		<Unit filename="core\net\packetqueue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\packetqueue.h" />
+		<Unit filename="core\net\petsciiconv.h" />
+		<Unit filename="core\net\print-stats.h" />
+		<Unit filename="core\net\psock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\psock.h" />
+		<Unit filename="core\net\queuebuf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\queuebuf.h" />
+		<Unit filename="core\net\random.h" />
+		<Unit filename="core\net\rawpacket-udp.h" />
+		<Unit filename="core\net\rawpacket.h" />
+		<Unit filename="core\net\resolv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\resolv.h" />
+		<Unit filename="core\net\rime.h" />
+		<Unit filename="core\net\rime\abc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\abc.h" />
+		<Unit filename="core\net\rime\announcement.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\announcement.h" />
+		<Unit filename="core\net\rime\broadcast-announcement.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\broadcast-announcement.h" />
+		<Unit filename="core\net\rime\broadcast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\broadcast.h" />
+		<Unit filename="core\net\rime\chameleon-bitopt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\chameleon-bitopt.h" />
+		<Unit filename="core\net\rime\chameleon-raw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\chameleon-raw.h" />
+		<Unit filename="core\net\rime\chameleon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\chameleon.h" />
+		<Unit filename="core\net\rime\channel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\channel.h" />
+		<Unit filename="core\net\rime\collect-link-estimate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\collect-link-estimate.h" />
+		<Unit filename="core\net\rime\collect-neighbor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\collect-neighbor.h" />
+		<Unit filename="core\net\rime\collect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\collect.h" />
+		<Unit filename="core\net\rime\ipolite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\ipolite.h" />
+		<Unit filename="core\net\rime\mesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\mesh.h" />
+		<Unit filename="core\net\rime\multihop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\multihop.h" />
+		<Unit filename="core\net\rime\neighbor-discovery.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\neighbor-discovery.h" />
+		<Unit filename="core\net\rime\netflood.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\netflood.h" />
+		<Unit filename="core\net\rime\polite-announcement.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\polite-announcement.h" />
+		<Unit filename="core\net\rime\polite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\polite.h" />
+		<Unit filename="core\net\rime\rime-udp.h" />
+		<Unit filename="core\net\rime\rime.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\rimeaddr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\rimeaddr.h" />
+		<Unit filename="core\net\rime\rimestats.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\rimestats.h" />
+		<Unit filename="core\net\rime\rmh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\rmh.h" />
+		<Unit filename="core\net\rime\route-discovery.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\route-discovery.h" />
+		<Unit filename="core\net\rime\route.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\route.h" />
+		<Unit filename="core\net\rime\rucb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\rucb.h" />
+		<Unit filename="core\net\rime\rudolph0.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\rudolph0.h" />
+		<Unit filename="core\net\rime\rudolph1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\rudolph1.h" />
+		<Unit filename="core\net\rime\rudolph2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\rudolph2.h" />
+		<Unit filename="core\net\rime\runicast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\runicast.h" />
+		<Unit filename="core\net\rime\stbroadcast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\stbroadcast.h" />
+		<Unit filename="core\net\rime\stunicast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\stunicast.h" />
+		<Unit filename="core\net\rime\timesynch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\timesynch.h" />
+		<Unit filename="core\net\rime\trickle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\trickle.h" />
+		<Unit filename="core\net\rime\unicast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\rime\unicast.h" />
+		<Unit filename="core\net\ringbuf.h" />
+		<Unit filename="core\net\sensors.h" />
+		<Unit filename="core\net\sicslowpan.h" />
+		<Unit filename="core\net\simple-udp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\simple-udp.h" />
+		<Unit filename="core\net\slipdev.h" />
+		<Unit filename="core\net\tcpdump.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\tcpdump.h" />
+		<Unit filename="core\net\tcpip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\tcpip.h" />
+		<Unit filename="core\net\uaodv-def.h" />
+		<Unit filename="core\net\uaodv-rt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uaodv-rt.h" />
+		<Unit filename="core\net\uaodv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uaodv.h" />
+		<Unit filename="core\net\uip-debug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip-debug.h" />
+		<Unit filename="core\net\uip-ds6.h" />
+		<Unit filename="core\net\uip-fw-drv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip-fw-drv.h" />
+		<Unit filename="core\net\uip-fw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip-fw.h" />
+		<Unit filename="core\net\uip-icmp6.h" />
+		<Unit filename="core\net\uip-nd6.h" />
+		<Unit filename="core\net\uip-neighbor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip-neighbor.h" />
+		<Unit filename="core\net\uip-over-mesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip-over-mesh.h" />
+		<Unit filename="core\net\uip-packetqueue.h" />
+		<Unit filename="core\net\uip-split.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip-split.h" />
+		<Unit filename="core\net\uip-udp-packet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip-udp-packet.h" />
+		<Unit filename="core\net\uip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip.h" />
+		<Unit filename="core\net\uip_arch.h" />
+		<Unit filename="core\net\uip_arp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uip_arp.h" />
+		<Unit filename="core\net\uiplib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\net\uiplib.h" />
+		<Unit filename="core\net\uipopt.h" />
+		<Unit filename="core\sys\arg.h" />
+		<Unit filename="core\sys\autostart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\autostart.h" />
+		<Unit filename="core\sys\cc.h" />
+		<Unit filename="core\sys\clock.h" />
+		<Unit filename="core\sys\compower.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\compower.h" />
+		<Unit filename="core\sys\ctimer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\ctimer.h" />
+		<Unit filename="core\sys\dsc.h" />
+		<Unit filename="core\sys\energest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\energest.h" />
+		<Unit filename="core\sys\etimer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\etimer.h" />
+		<Unit filename="core\sys\lc-addrlabels.h" />
+		<Unit filename="core\sys\lc-switch.h" />
+		<Unit filename="core\sys\lc.h" />
+		<Unit filename="core\sys\loader.h" />
+		<Unit filename="core\sys\log.h" />
+		<Unit filename="core\sys\mt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\mt.h" />
+		<Unit filename="core\sys\process.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\process.h" />
+		<Unit filename="core\sys\procinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\procinit.h" />
+		<Unit filename="core\sys\profile.h" />
+		<Unit filename="core\sys\pt-sem.h" />
+		<Unit filename="core\sys\pt.h" />
+		<Unit filename="core\sys\rtimer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\rtimer.h" />
+		<Unit filename="core\sys\stimer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\stimer.h" />
+		<Unit filename="core\sys\subprocess.h" />
+		<Unit filename="core\sys\timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\timer.h" />
+		<Unit filename="core\sys\timetable-aggregate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\timetable-aggregate.h" />
+		<Unit filename="core\sys\timetable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core\sys\timetable.h" />
+		<Unit filename="cpu\stm32w108\board-sensors.h" />
+		<Unit filename="cpu\stm32w108\cfs-coffee-arch.h" />
+		<Unit filename="cpu\stm32w108\clock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\dev\cortexm3_macro.h" />
+		<Unit filename="cpu\stm32w108\dev\stm32w-radio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\dev\stm32w-radio.h" />
+		<Unit filename="cpu\stm32w108\dev\stm32w_conf.h" />
+		<Unit filename="cpu\stm32w108\dev\stm32w_systick.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\dev\stm32w_systick.h" />
+		<Unit filename="cpu\stm32w108\dev\uart1-putchar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\dev\uart1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\dev\uart1.h" />
+		<Unit filename="cpu\stm32w108\gnu.ld" />
+		<Unit filename="cpu\stm32w108\hal\error-def.h" />
+		<Unit filename="cpu\stm32w108\hal\error.h" />
+		<Unit filename="cpu\stm32w108\hal\hal.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\adc.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\button.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\adc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\bootloader\fib-bootloader.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\clocks.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\compiler\asm.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\compiler\gnu.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\compiler\iar.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\context-switch.s">
+			<Option compiler="armelfgcc" use="1" buildCommand="arm-none-eabi-gcc  -mthumb -mcpu=cortex-m3 -c -g -Wall -Os -ffunction-sections -mlittle-endian -fshort-enums -x assembler-with-cpp -Wa,-EL $includes -o $object $file" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\flash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\flash.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\iap_bootloader.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\memmap-fat.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\memmap.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\mfg-token.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\mfg-token.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\micro-common-internal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\micro-common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\micro-common.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\micro.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\mpu.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\nvm-def.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\nvm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\nvm.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\sleep.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\spmr.s">
+			<Option compiler="armelfgcc" use="1" buildCommand="arm-none-eabi-gcc  -mthumb -mcpu=cortex-m3 -c -g -Wall -Os -ffunction-sections -mlittle-endian -fshort-enums -x assembler-with-cpp -Wa,-EL $includes -o $object $file" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\stm32w108\board.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\stm32w108\crt_stm32w108.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\stm32w108\memmap.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\stm32w108\regs.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\stm32w108\stm32w108_type.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\system-timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\token-manufacturing.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\cortexm3\uart.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\generic\compiler\platform-common.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\led.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\mems.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\mems_regs.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\micro-common.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\system-timer.h" />
+		<Unit filename="cpu\stm32w108\hal\micro\temperature_sensor.h" />
+		<Unit filename="cpu\stm32w108\hal\token-phy.h" />
+		<Unit filename="cpu\stm32w108\leds-arch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\mtarch.h" />
+		<Unit filename="cpu\stm32w108\rand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\rtimer-arch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\rtimer-arch.h" />
+		<Unit filename="cpu\stm32w108\simplemac\include\phy-library.h" />
+		<Unit filename="cpu\stm32w108\sleep.h" />
+		<Unit filename="cpu\stm32w108\slip_uart1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\uip_arch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu\stm32w108\watchdog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="filelist.txt" />
+		<Unit filename="platform\NucBee\board-mb851.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform\NucBee\contiki-conf.h" />
+		<Unit filename="platform\NucBee\contiki-main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform\NucBee\dev\acc-sensor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform\NucBee\dev\acc-sensor.h" />
+		<Unit filename="platform\NucBee\dev\button-sensor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform\NucBee\dev\irq.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform\NucBee\dev\mems.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform\NucBee\dev\mems.h" />
+		<Unit filename="platform\NucBee\dev\mems_regs.h" />
+		<Unit filename="platform\NucBee\dev\temperature-sensor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform\NucBee\dev\temperature-sensor.h" />
+		<Unit filename="platform\NucBee\platform-conf.h" />
+		<Extensions>
+			<code_completion />
+			<debugger>
+				<remote_debugging>
+					<options conn_type="0" serial_baud="115200" ip_address="localhost" ip_port="4242" additional_cmds="monitor reset halt&#x0A;load" />
+				</remote_debugging>
+			</debugger>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

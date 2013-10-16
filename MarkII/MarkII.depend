@@ -1,0 +1,1483 @@
+# depslib dependency file v1.0
+1381897526 source:d:\projects\nucler\markii\core\dev\leds.c
+	"dev/leds.h"
+	"sys/clock.h"
+	"sys/energest.h"
+
+1381897526 d:\projects\nucler\markii\core\dev\leds.h
+
+1381897529 d:\projects\nucler\markii\core\sys\clock.h
+	"contiki-conf.h"
+
+1381897531 d:\projects\nucler\markii\platform\nucbee\contiki-conf.h
+	"platform-conf.h"
+
+1342505470 d:\projects\nucler\markii\platform\nucbee\platform-conf.h
+	<inttypes.h>
+	<string.h>
+
+1381897530 d:\projects\nucler\markii\core\sys\energest.h
+	"sys/rtimer.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\rtimer.h
+	"contiki-conf.h"
+	"rtimer-arch.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\rtimer-arch.h
+	"contiki-conf.h"
+	"sys/clock.h"
+
+1381897526 source:d:\projects\nucler\markii\core\dev\nullradio.c
+	"dev/nullradio.h"
+
+1381897526 d:\projects\nucler\markii\core\dev\nullradio.h
+	"dev/radio.h"
+
+1342505464 d:\projects\nucler\markii\core\dev\radio.h
+
+1381897526 source:d:\projects\nucler\markii\core\dev\serial-line.c
+	"dev/serial-line.h"
+	<string.h>
+	"lib/ringbuf.h"
+
+1381897526 d:\projects\nucler\markii\core\dev\serial-line.h
+	"contiki.h"
+
+1342505464 d:\projects\nucler\markii\core\contiki.h
+	"contiki-version.h"
+	"contiki-conf.h"
+	"sys/process.h"
+	"sys/autostart.h"
+	"sys/timer.h"
+	"sys/ctimer.h"
+	"sys/etimer.h"
+	"sys/rtimer.h"
+	"sys/pt.h"
+	"sys/procinit.h"
+	"sys/loader.h"
+	"sys/clock.h"
+	"sys/energest.h"
+
+1342505464 d:\projects\nucler\markii\core\contiki-version.h
+
+1381897530 d:\projects\nucler\markii\core\sys\process.h
+	"sys/pt.h"
+	"sys/cc.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\pt.h
+	"sys/lc.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\lc.h
+	"sys/lc-switch.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\lc-switch.h
+
+1381897529 d:\projects\nucler\markii\core\sys\cc.h
+	"contiki-conf.h"
+
+1381897529 d:\projects\nucler\markii\core\sys\autostart.h
+	"sys/process.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\timer.h
+	"sys/clock.h"
+
+1381897529 d:\projects\nucler\markii\core\sys\ctimer.h
+	"sys/etimer.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\etimer.h
+	"sys/timer.h"
+	"sys/process.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\procinit.h
+	"sys/process.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\loader.h
+
+1381897526 d:\projects\nucler\markii\core\lib\ringbuf.h
+	"contiki-conf.h"
+
+1381897526 source:d:\projects\nucler\markii\core\dev\slip.c
+	<stdio.h>
+	<string.h>
+	"contiki.h"
+	"net/uip.h"
+	"net/uip-fw.h"
+	"dev/slip.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip.h
+	"net/uipopt.h"
+	"net/tcpip.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uipopt.h
+	"contiki-conf.h"
+
+1342505464 d:\projects\nucler\markii\core\net\tcpip.h
+	"contiki.h"
+	"net/uip.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip-fw.h
+	"net/uip.h"
+
+1381897526 d:\projects\nucler\markii\core\dev\slip.h
+	"contiki.h"
+
+1381897526 source:d:\projects\nucler\markii\core\lib\checkpoint.c
+	"lib/checkpoint.h"
+
+1381897526 d:\projects\nucler\markii\core\lib\checkpoint.h
+	"contiki.h"
+
+1381897526 source:d:\projects\nucler\markii\core\lib\crc16.c
+
+1381897526 source:d:\projects\nucler\markii\core\lib\ifft.c
+	"lib/ifft.h"
+
+1381897526 d:\projects\nucler\markii\core\lib\ifft.h
+	"contiki-conf.h"
+
+1381897526 source:d:\projects\nucler\markii\core\lib\list.c
+	"lib/list.h"
+
+1381897526 d:\projects\nucler\markii\core\lib\list.h
+
+1381897526 source:d:\projects\nucler\markii\core\lib\memb.c
+	<string.h>
+	"contiki.h"
+	"lib/memb.h"
+
+1381897526 d:\projects\nucler\markii\core\lib\memb.h
+	"sys/cc.h"
+
+1381897526 source:d:\projects\nucler\markii\core\lib\mmem.c
+	"mmem.h"
+	"list.h"
+	"contiki-conf.h"
+	<string.h>
+
+1381897526 d:\projects\nucler\markii\core\lib\mmem.h
+
+1381897526 source:d:\projects\nucler\markii\core\lib\print-stats.c
+	"lib/print-stats.h"
+	"net/rime.h"
+	"sys/energest.h"
+	<stdio.h>
+	<avr/pgmspace.h>
+
+1381897526 d:\projects\nucler\markii\core\lib\print-stats.h
+
+1342505464 d:\projects\nucler\markii\core\net\rime.h
+	"net/rime/announcement.h"
+	"net/rime/collect.h"
+	"net/rime/ipolite.h"
+	"net/rime/mesh.h"
+	"net/rime/multihop.h"
+	"net/rime/neighbor-discovery.h"
+	"net/rime/netflood.h"
+	"net/rime/polite-announcement.h"
+	"net/rime/polite.h"
+	"net/queuebuf.h"
+	"net/rime/rimeaddr.h"
+	"net/packetbuf.h"
+	"net/rime/rimestats.h"
+	"net/rime/rmh.h"
+	"net/rime/route-discovery.h"
+	"net/rime/route.h"
+	"net/rime/rucb.h"
+	"net/rime/runicast.h"
+	"net/rime/timesynch.h"
+	"net/rime/trickle.h"
+	"net/mac/mac.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\announcement.h
+	"net/rime/rimeaddr.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\rimeaddr.h
+	"contiki-conf.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\collect.h
+	"net/rime/announcement.h"
+	"net/rime/runicast.h"
+	"net/rime/neighbor-discovery.h"
+	"net/rime/collect-neighbor.h"
+	"net/packetqueue.h"
+	"sys/ctimer.h"
+	"lib/list.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\runicast.h
+	"net/rime/stunicast.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\stunicast.h
+	"sys/ctimer.h"
+	"net/rime/unicast.h"
+	"net/queuebuf.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\unicast.h
+	"net/rime/broadcast.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\broadcast.h
+	"net/rime/abc.h"
+	"net/rime/rimeaddr.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\abc.h
+	"net/packetbuf.h"
+	"net/rime/channel.h"
+
+1342505464 d:\projects\nucler\markii\core\net\packetbuf.h
+	"contiki-conf.h"
+	"net/rime/rimeaddr.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\channel.h
+	"contiki-conf.h"
+	"net/packetbuf.h"
+	"net/rime/chameleon.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\chameleon.h
+	"net/rime/channel.h"
+
+1342505464 d:\projects\nucler\markii\core\net\queuebuf.h
+	"net/packetbuf.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\neighbor-discovery.h
+	"net/rime/broadcast.h"
+	"sys/ctimer.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\collect-neighbor.h
+	"net/rime/rimeaddr.h"
+	"net/rime/collect-link-estimate.h"
+	"lib/list.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\collect-link-estimate.h
+
+1342505464 d:\projects\nucler\markii\core\net\packetqueue.h
+	"lib/list.h"
+	"lib/memb.h"
+	"sys/ctimer.h"
+	"net/packetbuf.h"
+	"net/queuebuf.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\ipolite.h
+	"sys/ctimer.h"
+	"net/rime/broadcast.h"
+	"net/queuebuf.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\mesh.h
+	"net/queuebuf.h"
+	"net/rime/multihop.h"
+	"net/rime/route-discovery.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\multihop.h
+	"net/rime/unicast.h"
+	"net/rime/rimeaddr.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\route-discovery.h
+	"net/rime/unicast.h"
+	"net/rime/netflood.h"
+	"sys/ctimer.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\netflood.h
+	"net/queuebuf.h"
+	"net/rime/ipolite.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\polite-announcement.h
+
+1342505464 d:\projects\nucler\markii\core\net\rime\polite.h
+	"net/rime/abc.h"
+	"net/queuebuf.h"
+	"sys/ctimer.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\rimestats.h
+
+1342505464 d:\projects\nucler\markii\core\net\rime\rmh.h
+	"net/rime/runicast.h"
+	"net/rime/rimeaddr.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\route.h
+	"net/rime/rimeaddr.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\rucb.h
+	"net/rime/runicast.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\timesynch.h
+	"net/mac/mac.h"
+	"sys/rtimer.h"
+
+1381897527 d:\projects\nucler\markii\core\net\mac\mac.h
+	"contiki-conf.h"
+	"dev/radio.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\trickle.h
+	"sys/ctimer.h"
+	"net/rime/broadcast.h"
+	"net/queuebuf.h"
+
+1381897526 source:d:\projects\nucler\markii\core\lib\random.c
+	"lib/random.h"
+	"sys/clock.h"
+	<stdlib.h>
+
+1381897526 d:\projects\nucler\markii\core\lib\random.h
+
+1381897526 source:d:\projects\nucler\markii\core\lib\ringbuf.c
+	"lib/ringbuf.h"
+
+1381897526 source:d:\projects\nucler\markii\core\lib\sensors.c
+	<string.h>
+	"contiki.h"
+	"lib/sensors.h"
+
+1381897526 d:\projects\nucler\markii\core\lib\sensors.h
+	"contiki.h"
+
+1381897526 source:d:\projects\nucler\markii\core\loader\elfloader.c
+	"contiki.h"
+	"loader/elfloader.h"
+	"loader/elfloader-arch.h"
+	"cfs/cfs.h"
+	"loader/symtab.h"
+	<stddef.h>
+	<string.h>
+	<stdio.h>
+	<stdio.h>
+
+1381897526 d:\projects\nucler\markii\core\loader\elfloader.h
+	"cfs/cfs.h"
+
+1342505464 d:\projects\nucler\markii\core\cfs\cfs.h
+	"contiki.h"
+
+1342505464 d:\projects\nucler\markii\core\loader\elfloader-arch.h
+	"loader/elfloader.h"
+
+1342505464 d:\projects\nucler\markii\core\loader\symtab.h
+
+1381897527 source:d:\projects\nucler\markii\core\net\dhcpc.c
+	<stdio.h>
+	<string.h>
+	"contiki.h"
+	"contiki-net.h"
+	"net/dhcpc.h"
+
+1342505464 d:\projects\nucler\markii\core\contiki-net.h
+	"contiki.h"
+	"net/tcpip.h"
+	"net/uip.h"
+	"net/uip-fw.h"
+	"net/uip-fw-drv.h"
+	"net/uip_arp.h"
+	"net/uiplib.h"
+	"net/uip-udp-packet.h"
+	"net/simple-udp.h"
+	"net/uip-icmp6.h"
+	"net/uip-ds6.h"
+	"net/resolv.h"
+	"net/psock.h"
+	"net/rime.h"
+	"net/netstack.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip-fw-drv.h
+	"contiki.h"
+	"net/uip-fw.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip_arp.h
+	"net/uip.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uiplib.h
+	"net/uip.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip-udp-packet.h
+	"net/uip.h"
+
+1342505464 d:\projects\nucler\markii\core\net\simple-udp.h
+	"net/uip.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip-icmp6.h
+	"net/uip.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip-ds6.h
+	"net/uip.h"
+	"sys/stimer.h"
+	"net/uip-nd6.h"
+	"net/uip-packetqueue.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\stimer.h
+	"sys/clock.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip-nd6.h
+	"net/uip.h"
+	"sys/stimer.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip-packetqueue.h
+	"sys/ctimer.h"
+
+1342505464 d:\projects\nucler\markii\core\net\resolv.h
+	"contiki.h"
+
+1342505464 d:\projects\nucler\markii\core\net\psock.h
+	"contiki.h"
+	"contiki-lib.h"
+	"contiki-net.h"
+
+1342505464 d:\projects\nucler\markii\core\contiki-lib.h
+	"contiki.h"
+	"lib/list.h"
+	"lib/memb.h"
+	"lib/mmem.h"
+	"lib/random.h"
+
+1342505464 d:\projects\nucler\markii\core\net\netstack.h
+	"contiki-conf.h"
+	"net/mac/mac.h"
+	"net/mac/rdc.h"
+	"net/mac/framer.h"
+	"dev/radio.h"
+
+1381897527 d:\projects\nucler\markii\core\net\mac\rdc.h
+	"contiki-conf.h"
+	"net/mac/mac.h"
+
+1381897527 d:\projects\nucler\markii\core\net\mac\framer.h
+
+1342505464 d:\projects\nucler\markii\core\net\dhcpc.h
+
+1381897527 source:d:\projects\nucler\markii\core\net\hc.c
+	"net/hc.h"
+	"net/uip.h"
+	<string.h>
+	<stdio.h>
+
+1342505464 d:\projects\nucler\markii\core\net\hc.h
+	"net/uip.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\contikimac.c
+	"contiki-conf.h"
+	"dev/leds.h"
+	"dev/radio.h"
+	"dev/watchdog.h"
+	"lib/random.h"
+	"net/mac/contikimac.h"
+	"net/netstack.h"
+	"net/rime.h"
+	"sys/compower.h"
+	"sys/pt.h"
+	"sys/rtimer.h"
+	<string.h>
+	<stdio.h>
+	<stdio.h>
+	"net/mac/phase.h"
+
+1342505464 d:\projects\nucler\markii\core\dev\watchdog.h
+
+1381897527 d:\projects\nucler\markii\core\net\mac\contikimac.h
+	"sys/rtimer.h"
+	"net/mac/rdc.h"
+	"dev/radio.h"
+
+1381897529 d:\projects\nucler\markii\core\sys\compower.h
+
+1381897527 d:\projects\nucler\markii\core\net\mac\phase.h
+	"net/rime/rimeaddr.h"
+	"sys/timer.h"
+	"sys/rtimer.h"
+	"lib/list.h"
+	"lib/memb.h"
+	"net/netstack.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\csma.c
+	"net/mac/csma.h"
+	"net/packetbuf.h"
+	"net/queuebuf.h"
+	"sys/ctimer.h"
+	"sys/clock.h"
+	"lib/random.h"
+	"net/netstack.h"
+	"lib/list.h"
+	"lib/memb.h"
+	<string.h>
+	<stdio.h>
+	<stdio.h>
+
+1381897527 d:\projects\nucler\markii\core\net\mac\csma.h
+	"net/mac/mac.h"
+	"dev/radio.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\cxmac.c
+	"dev/leds.h"
+	"dev/radio.h"
+	"dev/watchdog.h"
+	"net/netstack.h"
+	"lib/random.h"
+	"net/mac/cxmac.h"
+	"net/rime.h"
+	"net/rime/timesynch.h"
+	"sys/compower.h"
+	"sys/pt.h"
+	"sys/rtimer.h"
+	"contiki-conf.h"
+	"experiment-setup.h"
+	<string.h>
+	<stdio.h>
+	<stdio.h>
+	"lib/list.h"
+	"lib/memb.h"
+
+1381897527 d:\projects\nucler\markii\core\net\mac\cxmac.h
+	"sys/rtimer.h"
+	"net/mac/rdc.h"
+	"dev/radio.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\frame802154.c
+	"sys/cc.h"
+	"net/mac/frame802154.h"
+	<string.h>
+
+1381897527 d:\projects\nucler\markii\core\net\mac\frame802154.h
+	"contiki-conf.h"
+	"net/rime/rimeaddr.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\framer-802154.c
+	"net/mac/framer-802154.h"
+	"net/mac/frame802154.h"
+	"net/packetbuf.h"
+	"lib/random.h"
+	<string.h>
+	<stdio.h>
+
+1381897527 d:\projects\nucler\markii\core\net\mac\framer-802154.h
+	"net/mac/framer.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\framer-nullmac.c
+	"net/mac/framer-nullmac.h"
+	"net/packetbuf.h"
+	<stdio.h>
+
+1381897527 d:\projects\nucler\markii\core\net\mac\framer-nullmac.h
+	"net/mac/framer.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\lpp.c
+	"dev/leds.h"
+	"lib/list.h"
+	"lib/memb.h"
+	"lib/random.h"
+	"net/rime.h"
+	"net/netstack.h"
+	"net/mac/mac.h"
+	"net/mac/lpp.h"
+	"net/packetbuf.h"
+	"net/rime/announcement.h"
+	"sys/compower.h"
+	"net/mac/framer.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<stdio.h>
+
+1381897527 d:\projects\nucler\markii\core\net\mac\lpp.h
+	"net/mac/rdc.h"
+	"dev/radio.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\mac.c
+	"net/mac/mac.h"
+	<stdio.h>
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\nullmac.c
+	"net/mac/nullmac.h"
+	"net/packetbuf.h"
+	"net/netstack.h"
+
+1381897527 d:\projects\nucler\markii\core\net\mac\nullmac.h
+	"net/mac/mac.h"
+	"dev/radio.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\nullrdc-noframer.c
+	"net/mac/nullrdc-noframer.h"
+	"net/packetbuf.h"
+	"net/queuebuf.h"
+	"net/netstack.h"
+	<string.h>
+
+1381897527 d:\projects\nucler\markii\core\net\mac\nullrdc-noframer.h
+	"net/mac/rdc.h"
+	"dev/radio.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\nullrdc.c
+	"net/mac/nullrdc.h"
+	"net/packetbuf.h"
+	"net/queuebuf.h"
+	"net/netstack.h"
+	<string.h>
+	<stdio.h>
+	"sys/rtimer.h"
+	"dev/watchdog.h"
+
+1381897527 d:\projects\nucler\markii\core\net\mac\nullrdc.h
+	"net/mac/rdc.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\phase.c
+	"net/mac/phase.h"
+	"net/packetbuf.h"
+	"sys/clock.h"
+	"lib/memb.h"
+	"sys/ctimer.h"
+	"net/queuebuf.h"
+	"dev/watchdog.h"
+	"dev/leds.h"
+	<stdio.h>
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\sicslowmac.c
+	<string.h>
+	"net/mac/sicslowmac.h"
+	"net/mac/frame802154.h"
+	"net/packetbuf.h"
+	"net/queuebuf.h"
+	"net/netstack.h"
+	"lib/random.h"
+	<stdio.h>
+
+1381897527 d:\projects\nucler\markii\core\net\mac\sicslowmac.h
+	"net/mac/rdc.h"
+	"dev/radio.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\mac\xmac.c
+	"dev/leds.h"
+	"dev/radio.h"
+	"dev/watchdog.h"
+	"lib/random.h"
+	"net/netstack.h"
+	"net/mac/xmac.h"
+	"net/rime.h"
+	"net/rime/timesynch.h"
+	"sys/compower.h"
+	"sys/pt.h"
+	"sys/rtimer.h"
+	"contiki-conf.h"
+	"experiment-setup.h"
+	<string.h>
+	<stdio.h>
+	<stdio.h>
+	"lib/list.h"
+	"lib/memb.h"
+
+1381897527 d:\projects\nucler\markii\core\net\mac\xmac.h
+	"sys/rtimer.h"
+	"net/mac/rdc.h"
+	"dev/radio.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\netstack.c
+	"net/netstack.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\packetbuf.c
+	<string.h>
+	"contiki-net.h"
+	"net/packetbuf.h"
+	"net/rime.h"
+	<stdio.h>
+
+1381897527 source:d:\projects\nucler\markii\core\net\packetqueue.c
+	"sys/ctimer.h"
+	"net/packetqueue.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\psock.c
+	<string.h>
+	"net/psock.h"
+
+1381897527 source:d:\projects\nucler\markii\core\net\queuebuf.c
+	"contiki-net.h"
+	"cfs/cfs.h"
+	<string.h>
+	"lib/list.h"
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\resolv.c
+	"net/tcpip.h"
+	"net/resolv.h"
+	<string.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\abc.c
+	"contiki-net.h"
+	"net/rime.h"
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\announcement.c
+	"net/rime/announcement.h"
+	"lib/list.h"
+	"sys/cc.h"
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\broadcast-announcement.c
+	"contiki.h"
+	"net/rime.h"
+	"net/rime/announcement.h"
+	"net/rime/broadcast.h"
+	"lib/random.h"
+	"lib/list.h"
+	"ether.h"
+	<string.h>
+	<stddef.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\broadcast.c
+	"contiki-net.h"
+	<string.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\chameleon-bitopt.c
+	"net/rime/chameleon.h"
+	"net/rime.h"
+	<string.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\chameleon-raw.c
+	<string.h>
+	"net/rime/chameleon.h"
+	"net/rime.h"
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\chameleon.c
+	"net/rime/chameleon.h"
+	"net/rime/channel.h"
+	"net/rime.h"
+	"lib/list.h"
+	<stdio.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\channel.c
+	"net/rime/chameleon.h"
+	"net/rime.h"
+	"lib/list.h"
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\collect-link-estimate.c
+	"net/rime/collect.h"
+	"net/rime/collect-link-estimate.h"
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\collect-neighbor.c
+	<limits.h>
+	<stdio.h>
+	"contiki.h"
+	"lib/memb.h"
+	"lib/list.h"
+	"net/rime/collect-neighbor.h"
+	"net/rime/collect.h"
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\collect.c
+	"contiki.h"
+	"net/netstack.h"
+	"net/rime.h"
+	"net/rime/collect.h"
+	"net/rime/collect-neighbor.h"
+	"net/rime/collect-link-estimate.h"
+	"net/packetqueue.h"
+	"dev/radio-sensor.h"
+	"lib/random.h"
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	<stdio.h>
+
+1342505464 d:\projects\nucler\markii\core\dev\radio-sensor.h
+	"lib/sensors.h"
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\ipolite.c
+	"net/rime.h"
+	"net/rime/ipolite.h"
+	"lib/random.h"
+	<string.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\mesh.c
+	"contiki.h"
+	"net/rime.h"
+	"net/rime/route.h"
+	"net/rime/mesh.h"
+	<stddef.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\multihop.c
+	"contiki.h"
+	"net/rime.h"
+	"net/rime/multihop.h"
+	"net/rime/route.h"
+	<string.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\neighbor-discovery.c
+	"contiki.h"
+	"net/rime.h"
+	"net/rime/neighbor-discovery.h"
+	"dev/radio-sensor.h"
+	"lib/random.h"
+	"ether.h"
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\netflood.c
+	"net/rime/netflood.h"
+	<string.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\polite-announcement.c
+	"contiki.h"
+	"lib/list.h"
+	"net/rime.h"
+	"net/rime/announcement.h"
+	"net/rime/ipolite.h"
+	"ether.h"
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\polite.c
+	"net/rime.h"
+	"net/rime/polite.h"
+	"lib/random.h"
+	<string.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\rime.c
+	<stdio.h>
+	"net/netstack.h"
+	"net/rime.h"
+	"net/rime/chameleon.h"
+	"net/rime/route.h"
+	"net/rime/announcement.h"
+	"net/rime/broadcast-announcement.h"
+	"net/mac/mac.h"
+	"lib/list.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\broadcast-announcement.h
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\rimeaddr.c
+	"net/rime/rimeaddr.h"
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\rimestats.c
+	"net/rime/rimestats.h"
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\rmh.c
+	"contiki.h"
+	"net/rime.h"
+	"net/rime/rmh.h"
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\route-discovery.c
+	"contiki.h"
+	"net/rime.h"
+	"net/rime/route.h"
+	"net/rime/route-discovery.h"
+	<stddef.h>
+	<stdio.h>
+	"ether.h"
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\route.c
+	<stdio.h>
+	"lib/list.h"
+	"lib/memb.h"
+	"sys/ctimer.h"
+	"net/rime/route.h"
+	"contiki-conf.h"
+	<stdio.h>
+
+1381897528 source:d:\projects\nucler\markii\core\net\rime\rucb.c
+	"net/rime/rucb.h"
+	"net/rime.h"
+	<string.h>
+	<stdio.h>
+	"sys/timetable.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\timetable.h
+	"sys/cc.h"
+	"sys/rtimer.h"
+	"sys/timetable-aggregate.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\timetable-aggregate.h
+	"sys/timetable.h"
+	"sys/cc.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\rudolph0.c
+	<stddef.h>
+	"net/rime.h"
+	"net/rime/rudolph0.h"
+	<stdio.h>
+
+1342505464 d:\projects\nucler\markii\core\net\rime\rudolph0.h
+	"net/rime/stbroadcast.h"
+	"net/rime/polite.h"
+
+1342505464 d:\projects\nucler\markii\core\net\rime\stbroadcast.h
+	"sys/ctimer.h"
+	"net/rime/broadcast.h"
+	"net/queuebuf.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\rudolph1.c
+	<stdio.h>
+	<stddef.h>
+	"net/rime.h"
+	"net/rime/rudolph1.h"
+	"cfs/cfs.h"
+	<stdio.h>
+
+1342505464 d:\projects\nucler\markii\core\net\rime\rudolph1.h
+	"net/rime/trickle.h"
+	"net/rime/ipolite.h"
+	"sys/ctimer.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\rudolph2.c
+	<stdio.h>
+	<stddef.h>
+	"net/rime.h"
+	"net/rime/polite.h"
+	"net/rime/rudolph2.h"
+	"cfs/cfs.h"
+	<stdio.h>
+
+1342505464 d:\projects\nucler\markii\core\net\rime\rudolph2.h
+	"net/rime/polite.h"
+	"sys/ctimer.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\runicast.c
+	"net/rime/runicast.h"
+	"net/rime.h"
+	<string.h>
+	<stdio.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\stbroadcast.c
+	"net/rime/stbroadcast.h"
+	"net/rime.h"
+	<string.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\stunicast.c
+	"net/rime/stunicast.h"
+	"net/rime.h"
+	<string.h>
+	<stdio.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\timesynch.c
+	"contiki.h"
+	"lib/random.h"
+	"net/rime.h"
+	"net/rime/timesynch.h"
+	<string.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\trickle.c
+	"net/rime/trickle.h"
+	"lib/random.h"
+	"ether.h"
+	<stdio.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\rime\unicast.c
+	"net/rime.h"
+	"net/rime/unicast.h"
+	<string.h>
+	<stdio.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\simple-udp.c
+	"contiki-net.h"
+	"net/simple-udp.h"
+	<string.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\tcpdump.c
+	"contiki-net.h"
+	<string.h>
+	<stdio.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\tcpip.c
+	"contiki-net.h"
+	"net/uip-split.h"
+	"net/uip-packetqueue.h"
+	"net/uip-nd6.h"
+	"net/uip-ds6.h"
+	<string.h>
+	"net/uip-debug.h"
+	<stdio.h>
+	"rpl/rpl.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip-split.h
+
+1342505464 d:\projects\nucler\markii\core\net\uip-debug.h
+	"net/uip.h"
+	<stdio.h>
+	<avr/pgmspace.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\uaodv-rt.c
+	"net/uaodv-rt.h"
+	"contiki-net.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uaodv-rt.h
+	"contiki-net.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\uaodv.c
+	<stdio.h>
+	<stdarg.h>
+	"contiki.h"
+	"net/uaodv-def.h"
+	"net/uaodv-rt.h"
+	"lib/assert.h"
+	"dev/cc2420.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uaodv-def.h
+	"net/uip.h"
+
+1381897526 d:\projects\nucler\markii\core\lib\assert.h
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip-debug.c
+	"net/uip-debug.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip-fw-drv.c
+	"net/uip-fw.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip-fw.c
+	<string.h>
+	"contiki-conf.h"
+	"net/uip.h"
+	"net/uip_arch.h"
+	"net/uip-fw.h"
+	"net/uaodv-def.h"
+
+1342505464 d:\projects\nucler\markii\core\net\uip_arch.h
+	"net/uip.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip-neighbor.c
+	"net/uip-neighbor.h"
+	<string.h>
+	<stdio.h>
+
+1342505464 d:\projects\nucler\markii\core\net\uip-neighbor.h
+	"net/uip.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip-over-mesh.c
+	<stdio.h>
+	"net/hc.h"
+	"net/uip-fw.h"
+	"net/uip-over-mesh.h"
+	"net/rime/route-discovery.h"
+	"net/rime/route.h"
+	"net/rime/trickle.h"
+	<stdio.h>
+
+1342505464 d:\projects\nucler\markii\core\net\uip-over-mesh.h
+	"net/uip.h"
+	"net/uip-fw.h"
+	"net/rime.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip-split.c
+	<string.h>
+	"net/uip-split.h"
+	"net/uip.h"
+	"net/uip-fw.h"
+	"net/uip_arch.h"
+	"net/tcpip.h"
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip-udp-packet.c
+	"contiki-conf.h"
+	"net/uip-udp-packet.h"
+	<string.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip.c
+	"net/uip.h"
+	"net/uipopt.h"
+	"net/uip_arp.h"
+	"net/uip_arch.h"
+	"net/uip-neighbor.h"
+	<string.h>
+	<stdio.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\uip_arp.c
+	"net/uip_arp.h"
+	<string.h>
+	<stdio.h>
+
+1381897529 source:d:\projects\nucler\markii\core\net\uiplib.c
+	"net/uip.h"
+	"net/uiplib.h"
+	<string.h>
+	"net/uip-debug.h"
+
+1381897529 source:d:\projects\nucler\markii\core\sys\autostart.c
+	"sys/autostart.h"
+	<stdio.h>
+
+1381897529 source:d:\projects\nucler\markii\core\sys\compower.c
+	"contiki-conf.h"
+	"sys/energest.h"
+	"sys/compower.h"
+	"net/packetbuf.h"
+
+1381897529 source:d:\projects\nucler\markii\core\sys\ctimer.c
+	"sys/ctimer.h"
+	"contiki.h"
+	"lib/list.h"
+	<stdio.h>
+
+1381897530 source:d:\projects\nucler\markii\core\sys\energest.c
+	"sys/energest.h"
+	"contiki-conf.h"
+
+1381897530 source:d:\projects\nucler\markii\core\sys\etimer.c
+	"contiki-conf.h"
+	"sys/etimer.h"
+	"sys/process.h"
+
+1381897530 source:d:\projects\nucler\markii\core\sys\mt.c
+	"contiki.h"
+	"sys/mt.h"
+	"sys/cc.h"
+
+1381897530 d:\projects\nucler\markii\core\sys\mt.h
+	"contiki.h"
+	"mtarch.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\mtarch.h
+
+1381897530 source:d:\projects\nucler\markii\core\sys\process.c
+	<stdio.h>
+	"sys/process.h"
+	"sys/arg.h"
+	<stdio.h>
+
+1381897529 d:\projects\nucler\markii\core\sys\arg.h
+
+1381897530 source:d:\projects\nucler\markii\core\sys\procinit.c
+	"contiki.h"
+	"sys/procinit.h"
+
+1381897530 source:d:\projects\nucler\markii\core\sys\rtimer.c
+	"sys/rtimer.h"
+	"contiki.h"
+	<stdio.h>
+
+1381897530 source:d:\projects\nucler\markii\core\sys\stimer.c
+	"contiki-conf.h"
+	"sys/clock.h"
+	"sys/stimer.h"
+
+1381897530 source:d:\projects\nucler\markii\core\sys\timer.c
+	"contiki-conf.h"
+	"sys/clock.h"
+	"sys/timer.h"
+
+1381897530 source:d:\projects\nucler\markii\core\sys\timetable-aggregate.c
+	"sys/timetable-aggregate.h"
+	<stdio.h>
+
+1381897530 source:d:\projects\nucler\markii\core\sys\timetable.c
+	"sys/clock.h"
+	"sys/timetable.h"
+	<stdio.h>
+
+1381897530 source:d:\projects\nucler\markii\cpu\stm32w108\clock.c
+	"hal/error.h"
+	"hal/hal.h"
+	"dev/stm32w_systick.h"
+	"contiki.h"
+	"sys/clock.h"
+	"uart1.h"
+	"dev/leds.h"
+	"dev/stm32w-radio.h"
+	"net/uip-debug.h"
+	<stdio.h>
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\error.h
+	"error-def.h"
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\error-def.h
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\hal.h
+	"micro/micro-common.h"
+	"micro/led.h"
+	"micro/button.h"
+	"micro/system-timer.h"
+	"micro/cortexm3/nvm.h"
+	"hal/micro/cortexm3/uart.h"
+	"hal/micro/adc.h"
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\micro-common.h
+	"micro/cortexm3/stm32f103ret/micro-specific.h"
+	"micro/cortexm3/micro-common.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\micro-common.h
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\led.h
+	"micro/cortexm3/stm32f103ret/led-specific.h"
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\button.h
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\system-timer.h
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\nvm.h
+	"hal/micro/cortexm3/memmap.h"
+	"hal/micro/cortexm3/nvm-def.h"
+	"error.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\memmap.h
+	"hal/micro/cortexm3/stm32w108/memmap.h"
+	"hal/micro/cortexm3/stm32f103ret/memmap.h"
+	"memmap-fat.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\stm32w108\memmap.h
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\memmap-fat.h
+	"hal/micro/cortexm3/bootloader/fib-bootloader.h"
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\bootloader\fib-bootloader.h
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\nvm-def.h
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\uart.h
+	<yfuns.h>
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\adc.h
+	"micro/cortexm3/stm32f103ret/adc.h"
+
+1381897530 d:\projects\nucler\markii\cpu\stm32w108\dev\stm32w_systick.h
+	"stm32w108_type.h"
+	"stm32w_conf.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\stm32w108\stm32w108_type.h
+
+1381897530 d:\projects\nucler\markii\cpu\stm32w108\dev\stm32w_conf.h
+	"stm32w108_type.h"
+
+1381897530 d:\projects\nucler\markii\cpu\stm32w108\dev\uart1.h
+
+1381897530 d:\projects\nucler\markii\cpu\stm32w108\dev\stm32w-radio.h
+	"contiki.h"
+	"dev/radio.h"
+	"hal/hal.h"
+	"simplemac/include/phy-library.h"
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\simplemac\include\phy-library.h
+
+1381897530 source:d:\projects\nucler\markii\cpu\stm32w108\dev\stm32w-radio.c
+	"hal/error.h"
+	"hal/hal.h"
+	"contiki.h"
+	"net/mac/frame802154.h"
+	"dev/stm32w-radio.h"
+	"net/netstack.h"
+	"net/packetbuf.h"
+	"net/rime/rimestats.h"
+	"sys/rtimer.h"
+	"dev/leds.h"
+	<stdio.h>
+
+1381897530 source:d:\projects\nucler\markii\cpu\stm32w108\dev\stm32w_systick.c
+	"stm32w_systick.h"
+
+1381897530 source:d:\projects\nucler\markii\cpu\stm32w108\dev\uart1-putchar.c
+	<stdio.h>
+	"dev/uart1.h"
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+	<yfuns.h>
+
+1381897530 source:d:\projects\nucler\markii\cpu\stm32w108\dev\uart1.c
+	<stdio.h>
+	<stdlib.h>
+	"sys/energest.h"
+	"dev/uart1.h"
+	"dev/watchdog.h"
+	"lib/ringbuf.h"
+	"dev/leds.h"
+
+1381897530 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\adc.c
+	"hal/error.h"
+	"hal/hal.h"
+	"hal/micro/adc.h"
+
+1381897530 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\clocks.c
+	"error.h"
+	"hal/hal.h"
+	"hal/micro/cortexm3/mpu.h"
+	"hal/micro/cortexm3/mfg-token.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\mpu.h
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\mfg-token.h
+	"hal/micro/cortexm3/token-manufacturing.h"
+	"hal/micro/cortexm3/token-manufacturing.h"
+	"hal/micro/cortexm3/token-manufacturing.h"
+	"hal/micro/cortexm3/token-manufacturing.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\token-manufacturing.h
+
+1381897530 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\flash.c
+	"error.h"
+	"hal/micro/cortexm3/bootloader/fib-bootloader.h"
+	"hal/micro/cortexm3/mpu.h"
+	"memmap.h"
+	"flash.h"
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\flash.h
+	"memmap.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\mfg-token.c
+	"error.h"
+	"hal/micro/cortexm3/flash.h"
+	"mfg-token.h"
+	"hal/micro/cortexm3/token-manufacturing.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\micro-common-internal.c
+	"error.h"
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+	"hal/micro/cortexm3/mfg-token.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\micro-common.c
+	"error.h"
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\micro.c
+	"error.h"
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+	"micro/system-timer.h"
+	"micro/adc.h"
+	"micro/cortexm3/memmap.h"
+	"micro/cortexm3/iap_bootloader.h"
+	<stdlib.h>
+	<string.h>
+
+1381897531 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\iap_bootloader.h
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\nvm.c
+	"error.h"
+	"hal/micro/cortexm3/flash.h"
+	"hal/micro/cortexm3/nvm.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\sleep.c
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\stm32w108\crt_stm32w108.c
+	<stdio.h>
+	<sys/stat.h>
+	"hal/micro/cortexm3/memmap.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\system-timer.c
+	"error.h"
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+	"micro/system-timer.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\leds-arch.c
+	"contiki-conf.h"
+	"dev/leds.h"
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\rand.c
+	"dev/stm32w-radio.h"
+	"lib/random.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\rtimer-arch.c
+	"sys/energest.h"
+	"sys/rtimer.h"
+	<stdio.h>
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\slip_uart1.c
+	<stdio.h>
+	"contiki.h"
+	"dev/slip.h"
+	"dev/uart1.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\uip_arch.c
+	"net/uip.h"
+	"net/uip_arch.h"
+
+1381897531 source:d:\projects\nucler\markii\cpu\stm32w108\watchdog.c
+	<stdio.h>
+	"dev/watchdog.h"
+	"hal/error.h"
+	"hal/hal.h"
+
+1381897531 source:d:\projects\nucler\markii\platform\nucbee\board-mb851.c
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+	"dev/button-sensor.h"
+	"dev/temperature-sensor.h"
+	"dev/acc-sensor.h"
+	"dev/leds.h"
+
+1342505464 d:\projects\nucler\markii\core\dev\button-sensor.h
+	"lib/sensors.h"
+
+1381897531 d:\projects\nucler\markii\platform\nucbee\dev\temperature-sensor.h
+	"lib/sensors.h"
+
+1381897531 d:\projects\nucler\markii\platform\nucbee\dev\acc-sensor.h
+	"lib/sensors.h"
+	"mems.h"
+
+1381897531 d:\projects\nucler\markii\platform\nucbee\dev\mems.h
+	"mems_regs.h"
+
+1381897531 d:\projects\nucler\markii\platform\nucbee\dev\mems_regs.h
+
+1381915745 source:d:\projects\nucler\markii\platform\nucbee\contiki-main.c
+	"hal/error.h"
+	"hal/hal.h"
+	"micro/adc.h"
+	<stdio.h>
+	"contiki.h"
+	"dev/watchdog.h"
+	"dev/leds.h"
+	"dev/button-sensor.h"
+	"dev/temperature-sensor.h"
+	"dev/acc-sensor.h"
+	"dev/uart1.h"
+	"dev/serial-line.h"
+	"dev/stm32w-radio.h"
+	"net/netstack.h"
+	"net/rime/rimeaddr.h"
+	"net/rime.h"
+	"net/rime/rime-udp.h"
+	"net/uip.h"
+	"net/uip-ds6.h"
+	<stdio.h>
+
+1342505464 d:\projects\nucler\markii\core\net\rime\rime-udp.h
+	"net/mac/mac.h"
+	"dev/radio.h"
+
+1381897531 source:d:\projects\nucler\markii\platform\nucbee\dev\acc-sensor.c
+	"dev/acc-sensor.h"
+	"mems.h"
+	"sys/clock.h"
+
+1381897531 source:d:\projects\nucler\markii\platform\nucbee\dev\button-sensor.c
+	"dev/button-sensor.h"
+	"hal/micro/micro-common.h"
+	"hal/micro/cortexm3/micro-common.h"
+
+1381897531 source:d:\projects\nucler\markii\platform\nucbee\dev\irq.c
+
+1381897531 source:d:\projects\nucler\markii\platform\nucbee\dev\mems.c
+	"mems.h"
+	"timer.h"
+
+1381897531 source:d:\projects\nucler\markii\platform\nucbee\dev\temperature-sensor.c
+	"hal/error.h"
+	"hal/hal.h"
+	"micro/adc.h"
+	"dev/temperature-sensor.h"
+
+1342505466 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\context-switch.s
+	"compiler/asm.h"
+
+1342505466 d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\compiler\asm.h
+
+1342505466 source:d:\projects\nucler\markii\cpu\stm32w108\hal\micro\cortexm3\spmr.s
+	"compiler/asm.h"
+
+1381914114 source:d:\projects\nucler\markii\app\example-mesh.c
+	"contiki.h"
+	"net/rime.h"
+	"net/rime/mesh.h"
+	"dev/button-sensor.h"
+	"dev/leds.h"
+	<stdio.h>
+	<string.h>
+

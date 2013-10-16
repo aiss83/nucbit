@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="app\example-mesh.c" open="1" top="0" tabpos="7">
+		<Cursor position="2210" topLine="47" />
+	</File>
+	<File name="core\dev\leds.c" open="0" top="0" tabpos="0">
+		<Cursor position="1708" topLine="7" />
+	</File>
+	<File name="core\dev\nullradio.h" open="0" top="0" tabpos="0">
+		<Cursor position="44" topLine="0" />
+	</File>
+	<File name="core\dev\serial-line.h" open="0" top="0" tabpos="0">
+		<Cursor position="1899" topLine="31" />
+	</File>
+	<File name="core\dev\slip.c" open="0" top="0" tabpos="0">
+		<Cursor position="1823" topLine="29" />
+	</File>
+	<File name="core\lib\assert.h" open="0" top="0" tabpos="0">
+		<Cursor position="1729" topLine="28" />
+	</File>
+	<File name="core\loader\elfloader.c" open="0" top="0" tabpos="0">
+		<Cursor position="1857" topLine="28" />
+	</File>
+	<File name="core\loader\elfloader.h" open="0" top="0" tabpos="0">
+		<Cursor position="3150" topLine="172" />
+	</File>
+	<File name="core\net\mac\contikimac.c" open="0" top="0" tabpos="0">
+		<Cursor position="1997" topLine="33" />
+	</File>
+	<File name="core\net\rime\broadcast.c" open="1" top="0" tabpos="8">
+		<Cursor position="3614" topLine="94" />
+	</File>
+	<File name="core\net\rime\collect.c" open="0" top="0" tabpos="0">
+		<Cursor position="2080" topLine="42" />
+	</File>
+	<File name="core\sys\autostart.h" open="0" top="0" tabpos="0">
+		<Cursor position="2229" topLine="0" />
+	</File>
+	<File name="core\sys\timetable.c" open="1" top="1" tabpos="3">
+		<Cursor position="4092" topLine="119" />
+	</File>
+	<File name="cpu\stm32w108\clock.c" open="0" top="0" tabpos="0">
+		<Cursor position="1919" topLine="32" />
+	</File>
+	<File name="cpu\stm32w108\dev\stm32w-radio.c" open="1" top="0" tabpos="4">
+		<Cursor position="2535" topLine="62" />
+	</File>
+	<File name="cpu\stm32w108\dev\stm32w-radio.h" open="0" top="0" tabpos="0">
+		<Cursor position="1977" topLine="35" />
+	</File>
+	<File name="cpu\stm32w108\gnu.ld" open="1" top="0" tabpos="9">
+		<Cursor position="559" topLine="21" />
+	</File>
+	<File name="cpu\stm32w108\hal\micro\cortexm3\compiler\gnu.h" open="0" top="0" tabpos="0">
+		<Cursor position="3986" topLine="140" />
+	</File>
+	<File name="cpu\stm32w108\hal\micro\cortexm3\context-switch.s" open="1" top="0" tabpos="2">
+		<Cursor position="2791" topLine="42" />
+	</File>
+	<File name="cpu\stm32w108\hal\micro\cortexm3\memmap-fat.h" open="0" top="0" tabpos="0">
+		<Cursor position="419" topLine="2" />
+	</File>
+	<File name="cpu\stm32w108\hal\micro\cortexm3\stm32w108\crt_stm32w108.c" open="1" top="0" tabpos="1">
+		<Cursor position="14140" topLine="27" />
+	</File>
+	<File name="platform\NucBee\board-mb851.c" open="1" top="0" tabpos="6">
+		<Cursor position="134" topLine="0" />
+	</File>
+	<File name="platform\NucBee\contiki-main.c" open="1" top="0" tabpos="5">
+		<Cursor position="3466" topLine="81" />
+	</File>
+	<File name="platform\NucBee\platform-conf.h" open="0" top="0" tabpos="0">
+		<Cursor position="1990" topLine="35" />
+	</File>
+</CodeBlocks_layout_file>
