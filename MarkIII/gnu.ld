@@ -61,13 +61,14 @@ SECTIONS
     } >ROM_region
 
     /* for some STRx devices, the beginning of the startup code is stored in the .flashtext section, which goes to FLASH */
+    /*
     .flashtext :
     {
 	. = ALIGN(4);
-        *(.flashtext)            /* Startup code */
+        *(.flashtext)            
 	. = ALIGN(4);
     } >ROM_region
-
+*/
     /* the program code is stored in the .text section, which goes to Flash */
     .text :
     {
@@ -95,7 +96,7 @@ SECTIONS
     	_coffee_start = ABSOLUTE(.);
     	. = ALIGN(1024);
     	*(.coffeefiles)
-    	. = ORIGIN(NVM_region) - _coffee_start;
+    /*	. = ORIGIN(NVM_region) - _coffee_start;*/
     } > ROM_region = 0x00
 
 

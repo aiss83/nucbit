@@ -16,7 +16,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.cross.exe.debug.219781903" name="Debug" parent="cdt.managedbuild.config.gnu.cross.exe.debug">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.cross.exe.debug.219781903" name="Debug" parent="cdt.managedbuild.config.gnu.cross.exe.debug" postbuildStep="arm-none-eabi-objcopy -O ihex MarkIII markiii.hex">
 					<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.219781903." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.1706546182" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug">
 							<option id="cdt.managedbuild.option.gnu.cross.prefix.1263883865" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix" value="arm-none-eabi-" valueType="string"/>
@@ -54,9 +54,9 @@
 									<listOptionValue builtIn="false" value="../cpu/stm32w108/lib"/>
 									<listOptionValue builtIn="false" value="../cpu/stm32w108/simplemac/library"/>
 								</option>
-								<option id="gnu.c.link.option.libs.1567734239" name="Libraries (-l)" superClass="gnu.c.link.option.libs" valueType="libs"/>
-								<option id="gnu.c.link.option.ldflags.463899853" name="Linker flags" superClass="gnu.c.link.option.ldflags" value="-mcpu=cortex-m3 -Wl,-T -Xlinker ../gnu.ld -Wl,-static -nostartfiles -Wl,--gc-sections -Wl,--section-start=.coffee=0x801F800 -Wl,-Map -Xlinker contiki-nucbee.map  -u Default_Handler" valueType="string"/>
-								<option id="gnu.c.link.option.other.1289090625" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" valueType="stringList"/>
+								<option id="gnu.c.link.option.libs.1567734239" name="Libraries (-l)" superClass="gnu.c.link.option.libs"/>
+								<option id="gnu.c.link.option.ldflags.463899853" name="Linker flags" superClass="gnu.c.link.option.ldflags" value="-mcpu=cortex-m3  -mthumb -Wl,-T -Xlinker ../gnu.ld -Wl,-static -nostartfiles -Wl,--gc-sections -Wl,--section-start=.coffee=0x801F800 -Wl,-Map -Xlinker contiki-nucbee.map  -u Default_Handler" valueType="string"/>
+								<option id="gnu.c.link.option.other.1289090625" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other"/>
 								<option id="gnu.c.link.option.noshared.1197560588" name="No shared libraries (-static)" superClass="gnu.c.link.option.noshared" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.userobjs.636988592" name="Other objects" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cpu/stm32w108/lib/e_stdio_intonly_thumb2.a}&quot;"/>
@@ -163,8 +163,14 @@
 			</profile>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="refreshScope" versionNumber="1">
-		<resource resourceType="PROJECT" workspacePath="/MarkIII"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/MarkIII"/>
+		</configuration>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/MarkIII"/>
+		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 </cproject>
