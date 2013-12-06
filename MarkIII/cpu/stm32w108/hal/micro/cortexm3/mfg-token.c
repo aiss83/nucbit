@@ -21,11 +21,6 @@
 
 
 
-
-
-
-
-
 static const int8u nullEui[] = { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF };
 
 
@@ -59,19 +54,6 @@ void halInternalGetMfgTokenData(void *data, int16u ID, int8u index, int8u len)
         //to OR the ID with DATA_BIG_INFO_BASE to get the real address.
         int32u realAddress = (DATA_BIG_INFO_BASE|ID) + (len*index);
         int8u *flash = (int8u *)realAddress;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         MEMCOPY(ram, flash, len);
     }
