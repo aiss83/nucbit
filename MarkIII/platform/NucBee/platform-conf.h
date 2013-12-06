@@ -61,7 +61,7 @@
 
 typedef unsigned short uip_stats_t;
 
-#define UART1_CONF_TX_WITH_INTERRUPT    0
+#define UART1_CONF_TX_WITH_INTERRUPT    1
 #define WITH_SERIAL_LINE_INPUT      1
 
 /* rtimer_second = 11719 */
@@ -79,14 +79,19 @@ typedef unsigned long clock_time_t;
 typedef unsigned long rtimer_clock_t;
 #define RTIMER_CLOCK_LT(a,b)     ((signed short)((a)-(b)) < 0)
 
-/* LEDs ports MB851 */
-/*
-#define LEDS_CONF_RED_PIN   5
-#define LEDS_CONF_GREEN_PIN   6
-#define LEDS_CONF_PORT      PORTB
+/* LEDs ports NUM-216 */
+#define LED_CONF_NET 0
+#define LED_CONF_CPU 2
+#define LED_CONF_SIM 1
+
+#define LEDS_CONF_RED_PIN   LED_CONF_NET
+#define LEDS_CONF_GREEN_PIN   LED_CONF_SIM
+#define LEDS_CONF_BLUE_PIN	LED_CONF_CPU
+#define LEDS_CONF_PORT      PORTA
 #define LEDS_CONF_RED     (1<<LEDS_CONF_RED_PIN)
 #define LEDS_CONF_GREEN     (1<<LEDS_CONF_GREEN_PIN)
-*/
+#define LEDS_CONF_BLUE     (1<<LEDS_CONF_BLUE_PIN)
+//*/
 
 // Let's try to omit uip
 /*

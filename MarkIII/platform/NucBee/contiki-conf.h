@@ -71,7 +71,7 @@
 /* TX routine does automatic cca and optional backoff */
 #define RDC_CONF_HARDWARE_CSMA                  0
 /* RDC debug with LED */
-#define RDC_CONF_DEBUG_LED                      1
+#define RDC_CONF_DEBUG_LED                      0
 /* Channel check rate (per second) */
 #define NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE    8
 /* Use ACK for optimization (LPP, XMAC) */

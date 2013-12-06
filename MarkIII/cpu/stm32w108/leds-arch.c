@@ -53,12 +53,14 @@
 void
 leds_arch_init(void)
 {
-#ifdef LEDS_CONF_PORT && LEDS_CONF_RED_PIN && EDS_CONF_GREEN_PIN
+//#ifdef LEDS_CONF_PORT && LEDS_CONF_RED_PIN && EDS_CONF_GREEN_PIN
     halGpioConfig(PORTx_PIN(LEDS_CONF_PORT,LEDS_CONF_RED_PIN),GPIOCFG_OUT);
     halGpioConfig(PORTx_PIN(LEDS_CONF_PORT,LEDS_CONF_GREEN_PIN),GPIOCFG_OUT);
+    halGpioConfig(PORTx_PIN(LEDS_CONF_PORT,LEDS_CONF_BLUE_PIN),GPIOCFG_OUT);
 
-    LEDS_PORT |= (LEDS_CONF_RED | LEDS_CONF_GREEN);
-#endif
+  //  LEDS_PORT |= (LEDS_CONF_RED | LEDS_CONF_GREEN);
+    LEDS_PORT|= LEDS_CONF_BLUE;
+//#endif
 }
 /*---------------------------------------------------------------------------*/
 unsigned char

@@ -84,16 +84,18 @@
 #define PRINTLLADDR(addr)
 #endif
 
-
+/*
 #if UIP_CONF_IPV6
-PROCINIT(&tcpip_process, &sensors_process);
+PROCINIT(&tcpip_process);
 #else
-PROCINIT(&sensors_process);
+//PROCINIT(&sensors_process);
 //PROCINIT(&tcpip_process, &sensors_process);
 //#warning "No TCP/IP process!"
 #endif
+*/
+PROCINIT(NULL);
 
-SENSORS(&button_sensor, &temperature_sensor, &acc_sensor);
+//SENSORS(&button_sensor, &temperature_sensor, &acc_sensor);
 
 /* The default CCA threshold is set to -77, which is the same as the
    default setting on the TI CC2420. */

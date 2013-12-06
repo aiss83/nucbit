@@ -48,7 +48,7 @@ process_event_t sensors_event;
 
 static unsigned char num_sensors;
 
-PROCESS(sensors_process, "Sensors");
+//PROCESS(sensors_process, "Sensors");
 
 /*---------------------------------------------------------------------------*/
 static int

@@ -42,9 +42,10 @@
 #include "net/rime.h"
 #include "net/rime/mesh.h"
 
-#include "dev/button-sensor.h"
+//#include "dev/button-sensor.h"
 
 #include "dev/leds.h"
+#include "sys/etimer.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -88,19 +89,22 @@ PROCESS_THREAD(example_mesh_process, ev, data)
 {
   PROCESS_EXITHANDLER(mesh_close(&mesh);)
   PROCESS_BEGIN();
-
+  struct etimer tmr;
   mesh_open(&mesh, 132, &callbacks);
 
-  SENSORS_ACTIVATE(button_sensor);
+
+  etimer_set(&tmr,5000);
+
+//  SENSORS_ACTIVATE(button_sensor);
 
   while(1) {
     rimeaddr_t addr;
 
     /* Wait for button click before sending the first message. */
-    PROCESS_WAIT_EVENT_UNTIL(ev == sensors_event && data == &button_sensor);
+    PROCESS_WAIT_EVENT_UNTIL(ev == PROCESS_EVENT_TIMER );
 
-    printf("Button clicked\n");
-
+    printf("Timer bump\n");
+   // sleep(5);
     /* Send a message to node number 1. */
 
     packetbuf_copyfrom(MESSAGE, strlen(MESSAGE));
