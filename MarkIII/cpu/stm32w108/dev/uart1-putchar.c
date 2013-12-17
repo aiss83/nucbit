@@ -23,6 +23,10 @@
 int __attribute__(( weak )) putchar(int c)
 {
     uart1_writeb(c);
+
+    if (c =='\n'){
+    	  uart1_writeb('\r');
+    }
     return c;
 }
 
