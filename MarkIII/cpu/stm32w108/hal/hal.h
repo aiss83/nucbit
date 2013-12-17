@@ -32,7 +32,7 @@
 // Keep micro first for specifics used by other headers
 #include "micro/micro-common.h"
 #include "micro/led.h"
-#include "micro/button.h"
+//#include "micro/button.h"
 #include "micro/system-timer.h"
 #include "micro/cortexm3/nvm.h"
 #include "hal/micro/cortexm3/uart.h"

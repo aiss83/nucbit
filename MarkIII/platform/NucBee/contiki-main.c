@@ -59,7 +59,7 @@
 #include "dev/temperature-sensor.h"
 #include "dev/acc-sensor.h"
 #include "dev/uart1.h"
-#include "dev/serial-line.h"
+//#include "dev/serial-line.h"
 
 #include "dev/stm32w-radio.h"
 #include "net/netstack.h"
@@ -166,11 +166,12 @@ main(void)
      */
 
     process_init();
-
+/*
 #if WITH_SERIAL_LINE_INPUT
-    uart1_set_input(serial_line_input_byte);
-    serial_line_init();
+   // uart1_set_input(serial_line_input_byte);
+   // serial_line_init();
 #endif
+*/
     /* rtimer and ctimer should be initialized before radio duty cycling
        layers */
     rtimer_init();

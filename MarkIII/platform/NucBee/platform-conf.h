@@ -79,7 +79,7 @@ typedef unsigned long clock_time_t;
 typedef unsigned long rtimer_clock_t;
 #define RTIMER_CLOCK_LT(a,b)     ((signed short)((a)-(b)) < 0)
 
-/* LEDs ports NUM-216 */
+/* LEDs ports NUC-216 */
 #define LED_CONF_NET 0
 #define LED_CONF_CPU 2
 #define LED_CONF_SIM 1
