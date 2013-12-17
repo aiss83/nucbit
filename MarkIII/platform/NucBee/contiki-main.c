@@ -239,7 +239,7 @@ main(void)
     }
 #endif /* UIP_CONF_IPV6 */
 
-    watchdog_start();
+  //  watchdog_start();
 
     while(1)
     {

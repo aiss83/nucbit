@@ -62,7 +62,7 @@ void sensorsPowerDown()
 {
 
     sensors_status = 0;
-
+/*
     if(button_sensor.status(SENSORS_READY))
     {
         sensors_status |= BUTTON_STATUS_ACTIVE;
@@ -77,16 +77,18 @@ void sensorsPowerDown()
         // Power down accelerometer to save power
         SENSORS_DEACTIVATE(acc_sensor);
     }
+    */
 }
 
 /**/
 void sensorsPowerUp()
 {
-
+/*
     button_sensor.configure(SENSORS_HW_INIT, 0);
     temperature_sensor.configure(SENSORS_HW_INIT, 0);
     acc_sensor.configure(SENSORS_HW_INIT, 0);
-
+*/
+	/*
     if(sensors_status & BUTTON_STATUS_ACTIVE)
     {
         SENSORS_ACTIVATE(button_sensor);
@@ -99,6 +101,7 @@ void sensorsPowerUp()
     {
         SENSORS_ACTIVATE(acc_sensor);
     }
+    */
 }
 
 void halBoardPowerUp(void)
@@ -125,7 +128,7 @@ void halBoardPowerUp(void)
                   (GPIOCFG_IN            <<PC2_CFG_BIT)|
                   (GPIOCFG_IN            <<PC3_CFG_BIT);
     GPIO_PCCFGH = (GPIOCFG_IN            <<PC4_CFG_BIT)|
-                  (GPIOCFG_IN            <<PC5_CFG_BIT)|
+                  (GPIOCFG_OUT_ALT       <<PC5_CFG_BIT)|
                   (GPIOCFG_IN            <<PC6_CFG_BIT)|  /* OSC32K */
                   (GPIOCFG_IN            <<PC7_CFG_BIT);  /* OSC32K */
 

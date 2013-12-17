@@ -59,7 +59,7 @@ leds_arch_init(void)
     halGpioConfig(PORTx_PIN(LEDS_CONF_PORT,LEDS_CONF_BLUE_PIN),GPIOCFG_OUT);
 
   //  LEDS_PORT |= (LEDS_CONF_RED | LEDS_CONF_GREEN);
-    LEDS_PORT|= LEDS_CONF_BLUE;
+    LEDS_PORT &= ~(LEDS_CONF_BLUE|LEDS_CONF_RED | LEDS_CONF_GREEN);
 //#endif
 }
 /*---------------------------------------------------------------------------*/

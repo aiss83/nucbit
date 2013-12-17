@@ -235,12 +235,12 @@ void Reset_Handler(void) {
 			(HIGH << NVIC_IPR_3to0_PRI_2_BIT) |      //Management Handler
 			(MED << NVIC_IPR_3to0_PRI_3_BIT));      //BaseBand Handler
 	NVIC_IPR_7to4 = ((MED << NVIC_IPR_7to4_PRI_4_BIT) |   //Sleep Timer Handler
-			(MED << NVIC_IPR_7to4_PRI_5_BIT) |      //SC1 Handler
-			(MED << NVIC_IPR_7to4_PRI_6_BIT) |      //SC2 Handler
+			(HIGH << NVIC_IPR_7to4_PRI_5_BIT) |      //SC1 Handler
+			(HIGH << NVIC_IPR_7to4_PRI_6_BIT) |      //SC2 Handler
 			(MED << NVIC_IPR_7to4_PRI_7_BIT));      //Security Handler
 	NVIC_IPR_11to8 = ((MED << NVIC_IPR_11to8_PRI_8_BIT) |   //MAC Timer Handler
-			(MED << NVIC_IPR_11to8_PRI_9_BIT) |    //MAC TX Handler
-			(MED << NVIC_IPR_11to8_PRI_10_BIT) |    //MAC RX Handler
+			(HIGH << NVIC_IPR_11to8_PRI_9_BIT) |    //MAC TX Handler
+			(HIGH << NVIC_IPR_11to8_PRI_10_BIT) |    //MAC RX Handler
 			(MED << NVIC_IPR_11to8_PRI_11_BIT));    //ADC Handler
 	NVIC_IPR_15to12 = ((MED << NVIC_IPR_15to12_PRI_12_BIT) | //GPIO IRQA Handler
 			(MED << NVIC_IPR_15to12_PRI_13_BIT) |   //GPIO IRQB Handler
@@ -379,7 +379,7 @@ int _fstat(int file, struct stat *st) {
 }
 int _isatty(int fd) {
 	return 1;
-	fd = fd;
+	//fd = fd;
 }
 int _getpid(int n) {
 	return -1;
@@ -411,6 +411,7 @@ void hard_fault_handler_asm(void) {
 
 // hard fault handler in C,
 // with stack frame location as input parameter
+/*
 void hard_fault_handler_c(unsigned int * hardfault_args) {
 	unsigned int stacked_r0;
 	unsigned int stacked_r1;
@@ -450,6 +451,6 @@ void hard_fault_handler_c(unsigned int * hardfault_args) {
 
 	return;
 }
-
+*/
 /********************* (C) COPYRIGHT 2007 STMicroelectronics  *****END OF FILE****/
 
