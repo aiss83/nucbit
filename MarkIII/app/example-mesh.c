@@ -53,6 +53,7 @@
 #define MESSAGE "Hello"
 
 static struct mesh_conn mesh;
+static struct etimer tmr;
 /*---------------------------------------------------------------------------*/
 PROCESS(example_mesh_process, "Mesh example");
 #ifndef AUTOSTART_ENABLE
@@ -89,7 +90,7 @@ PROCESS_THREAD(example_mesh_process, ev, data)
 {
   PROCESS_EXITHANDLER(mesh_close(&mesh);)
   PROCESS_BEGIN();
-  struct etimer tmr;
+
   mesh_open(&mesh, 132, &callbacks);
 
 
@@ -108,9 +109,10 @@ PROCESS_THREAD(example_mesh_process, ev, data)
     /* Send a message to node number 1. */
 
     packetbuf_copyfrom(MESSAGE, strlen(MESSAGE));
-    addr.u8[0] = 1;
-    addr.u8[1] = 0;
+    addr.u8[0] = 186;
+    addr.u8[1] = 170;
     mesh_send(&mesh, &addr);
+    etimer_reset(&tmr);
   }
   PROCESS_END();
 }

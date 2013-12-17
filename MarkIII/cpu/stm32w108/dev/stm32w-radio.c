@@ -57,10 +57,10 @@
 #include "net/rime/rimestats.h"
 #include "sys/rtimer.h"
 
-#define DEBUG 0
+//#define DEBUG 0
 
 #include "dev/leds.h"
-#define LED_ACTIVITY 0
+#define LED_ACTIVITY 1
 
 #ifdef ST_CONF_RADIO_AUTOACK
 #define ST_RADIO_AUTOACK ST_CONF_RADIO_AUTOACK
@@ -152,7 +152,7 @@ int8_t mac_retries_left;
                                   ENERGEST_OFF(ENERGEST_TYPE_LISTEN); \
                                 }                                     \
                               }
-#if RDC_CONF_HARDWARE_CSMA
+#if !RDC_CONF_HARDWARE_CSMA
 #define ST_RADIO_CHECK_CCA FALSE
 #define ST_RADIO_CCA_ATTEMPT_MAX 0
 #define ST_BACKOFF_EXP_MIN 0
@@ -173,7 +173,7 @@ const RadioTransmitConfig radioTransmitConfig =
     TRUE                        // appendCrc;
 };
 
-#define MAC_RETRIES 0
+//#define MAC_RETRIES 0
 
 /*
  * The buffers which hold incoming data.
@@ -281,7 +281,7 @@ static int stm32w_radio_init(void)
 
     // Initialize radio (analog section, digital baseband and MAC).
     // Leave radio powered up in non-promiscuous rx mode.
-    ST_RadioInit(ST_RADIO_POWER_MODE_OFF);
+    ST_RadioInit(ST_RADIO_POWER_MODE_RX_ON);
 
     onoroff = OFF;
     ST_RadioSetPanId(IEEE802154_PANID);
