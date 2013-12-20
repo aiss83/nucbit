@@ -65,8 +65,8 @@
 #include "net/netstack.h"
 #include "net/rime/rimeaddr.h"
 #include "net/rime.h"
-#include "net/rime/rime-udp.h"
-#include "net/uip.h"
+//#include "net/rime/rime-udp.h"
+//#include "net/uip.h"
 
 #if WITH_UIP6
 #include "net/uip-ds6.h"
@@ -100,6 +100,8 @@ PROCINIT(NULL);
 /* The default CCA threshold is set to -77, which is the same as the
    default setting on the TI CC2420. */
 #define DEFAULT_RADIO_CCA_THRESHOLD -77
+
+void modZig_controller_init();
 
 /*---------------------------------------------------------------------------*/
 static void
@@ -150,7 +152,7 @@ main(void)
     halInit();
     clock_init();
 
-    uart1_init(115200);
+    //uart1_init(115200);
 
     /* Led initialization */
     leds_init();
@@ -171,9 +173,9 @@ main(void)
 /*
 #if WITH_SERIAL_LINE_INPUT
    // uart1_set_input(serial_line_input_byte);
-   // serial_line_init();
+    serial_line_init();
 #endif
-*/
+//*/
     /* rtimer and ctimer should be initialized before radio duty cycling
        layers */
     rtimer_init();
@@ -208,7 +210,9 @@ main(void)
        defined in this file. */
     ST_RadioSetEdCcaThreshold(DEFAULT_RADIO_CCA_THRESHOLD);
 
-   // autostart_start(autostart_processes);
+    modZig_controller_init();
+
+  //  autostart_start(autostart_processes);
 #if UIP_CONF_IPV6
     printf("Tentative link-local IPv6 address ");
     {

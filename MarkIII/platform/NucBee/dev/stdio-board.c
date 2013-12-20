@@ -1,4 +1,6 @@
 #include <stdio.h>
+
+#ifdef UART_CONSOLE
 #include "dev/uart1.h"
 
 
@@ -74,4 +76,15 @@ size_t _read(int handle, unsigned char * buffer, size_t size)
 {
     return 0;
 }
+#else
 
+#undef putchar
+int __attribute__(( weak )) putchar(int c)
+{
+    return 0;
+}
+
+void __io_putchar(char c){
+}
+
+#endif

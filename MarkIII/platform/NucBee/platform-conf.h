@@ -64,6 +64,7 @@
 typedef unsigned short uip_stats_t;
 
 #define UART1_CONF_TX_WITH_INTERRUPT    1
+#define UART1_CONF_TX_BUFSIZE 300
 //#define WITH_SERIAL_LINE_INPUT      1
 
 /* rtimer_second = 11719 */

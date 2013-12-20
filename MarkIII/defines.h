@@ -17,8 +17,10 @@
 #define CORTEXM3
 #define CORTEXM3_STM32W108
 #define PHY_STM32W108XX
-#define DISABLE_WATCHDOG
+//#define DISABLE_WATCHDOG
 
-//#define AUTOSTART_ENABLE 1
+#define AUTOSTART_ENABLE 1
+
+//#define MODBUS_PLATFORM_HEADER "platform/NucBee/modbus/port.h"
 
 #endif /* DEFINES_H_ */
