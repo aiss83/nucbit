@@ -40,6 +40,7 @@ static unsigned char leds, invert;
 static void
 show_leds(unsigned char changed)
 {
+#ifdef ENERGEST
     if(changed & LEDS_GREEN)
     {
         /* Green did change */
@@ -74,6 +75,7 @@ show_leds(unsigned char changed)
             ENERGEST_OFF(ENERGEST_TYPE_LED_RED);
         }
     }
+#endif
     leds_arch_set(leds ^ invert);
 }
 /*---------------------------------------------------------------------------*/

@@ -155,6 +155,8 @@ main(void)
     /* Led initialization */
     leds_init();
 
+    leds_on(LEDS_CONF_BLUE);
+
     INTERRUPTS_ON();
 
     PRINTF("\r\nStarting ");
@@ -206,7 +208,7 @@ main(void)
        defined in this file. */
     ST_RadioSetEdCcaThreshold(DEFAULT_RADIO_CCA_THRESHOLD);
 
-    autostart_start(autostart_processes);
+   // autostart_start(autostart_processes);
 #if UIP_CONF_IPV6
     printf("Tentative link-local IPv6 address ");
     {

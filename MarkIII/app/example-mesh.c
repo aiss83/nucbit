@@ -56,9 +56,7 @@ static struct mesh_conn mesh;
 static struct etimer tmr;
 /*---------------------------------------------------------------------------*/
 PROCESS(example_mesh_process, "Mesh example");
-#ifndef AUTOSTART_ENABLE
-#error test
-#endif
+
 AUTOSTART_PROCESSES(&example_mesh_process);
 /*---------------------------------------------------------------------------*/
 static void

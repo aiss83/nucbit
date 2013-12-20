@@ -56,8 +56,8 @@ extern void halInternalSwitchToXtal(void);
 
 /* Weak definitions of handlers point to Default_Handler if not implemented */
 void NMI_Handler() __attribute__ ((weak, alias("Default_Handler")));
-void HardFault_Handler() __attribute__ ((weak, alias("hard_fault_handler_asm")));
-//void HardFault_Handler() __attribute__ ((weak, alias("Default_Handler")));
+//void HardFault_Handler() __attribute__ ((weak, alias("hard_fault_handler_asm")));
+void HardFault_Handler() __attribute__ ((weak, alias("Default_Handler")));
 void MemManage_Handler() __attribute__ ((weak, alias("Default_Handler")));
 void BusFault_Handler() __attribute__ ((weak, alias("Default_Handler")));
 void UsageFault_Handler() __attribute__ ((weak, alias("Default_Handler")));
@@ -162,7 +162,7 @@ static const int16u blOffset[] = { 0x0715 - 0x03ad - 0x68, 0x0719 - 0x03ad
 void Reset_Handler(void) {
 	//Ensure there is enough margin on VREG_1V8 for stable RAM reads by
 	//setting it to a code of 6.  VREG_1V2 can be left at its reset value.
-	VREG = 0x00000307;
+	VREG = 0x00000b87; //was 0x307
 
 	// This code should be careful about the use of local variables in case the
 	// reset type happens to be a deep sleep reset.  If the reset is not from
@@ -235,12 +235,12 @@ void Reset_Handler(void) {
 			(HIGH << NVIC_IPR_3to0_PRI_2_BIT) |      //Management Handler
 			(MED << NVIC_IPR_3to0_PRI_3_BIT));      //BaseBand Handler
 	NVIC_IPR_7to4 = ((MED << NVIC_IPR_7to4_PRI_4_BIT) |   //Sleep Timer Handler
-			(HIGH << NVIC_IPR_7to4_PRI_5_BIT) |      //SC1 Handler
-			(HIGH << NVIC_IPR_7to4_PRI_6_BIT) |      //SC2 Handler
+			(MED << NVIC_IPR_7to4_PRI_5_BIT) |      //SC1 Handler
+			(MED << NVIC_IPR_7to4_PRI_6_BIT) |      //SC2 Handler
 			(MED << NVIC_IPR_7to4_PRI_7_BIT));      //Security Handler
 	NVIC_IPR_11to8 = ((MED << NVIC_IPR_11to8_PRI_8_BIT) |   //MAC Timer Handler
-			(HIGH << NVIC_IPR_11to8_PRI_9_BIT) |    //MAC TX Handler
-			(HIGH << NVIC_IPR_11to8_PRI_10_BIT) |    //MAC RX Handler
+			(MED << NVIC_IPR_11to8_PRI_9_BIT) |    //MAC TX Handler
+			(MED << NVIC_IPR_11to8_PRI_10_BIT) |    //MAC RX Handler
 			(MED << NVIC_IPR_11to8_PRI_11_BIT));    //ADC Handler
 	NVIC_IPR_15to12 = ((MED << NVIC_IPR_15to12_PRI_12_BIT) | //GPIO IRQA Handler
 			(MED << NVIC_IPR_15to12_PRI_13_BIT) |   //GPIO IRQB Handler
@@ -394,7 +394,7 @@ int _fflush_r(struct _reent *r, FILE *f) {
 // hard fault handler wrapper in assembly
 // it extract the location of stack frame and pass it
 // to handler in C as pointer.
-
+/*
 void hard_fault_handler_asm(void) {
 //void HardFault_Handler() __attribute__ ((weak)) {
 //void __attribute__ ((weak)) Default_Handler() {

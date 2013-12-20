@@ -19,6 +19,6 @@
 #define PHY_STM32W108XX
 #define DISABLE_WATCHDOG
 
-#define AUTOSTART_ENABLE 1
+//#define AUTOSTART_ENABLE 1
 
 #endif /* DEFINES_H_ */

@@ -51,7 +51,8 @@
 #include "platform-conf.h"
 #endif /* PLATFORM_CONF_H */
 
-#define DEBUG 1
+#define DEBUG 0
+
 
 /* Radio and 802.15.4 params */
 /* 802.15.4 radio channel */
@@ -71,11 +72,11 @@
 /* TX routine passes the cca/ack result in the return parameter */
 #define RDC_CONF_HARDWARE_ACK                   1
 /* TX routine does automatic cca and optional backoff */
-#define RDC_CONF_HARDWARE_CSMA                  0
+#define RDC_CONF_HARDWARE_CSMA                  1
 /* RDC debug with LED */
 #define RDC_CONF_DEBUG_LED                      0
 /* Channel check rate (per second) */
-#define NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE    8
+#define NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE    128
 /* Use ACK for optimization (LPP, XMAC) */
 #define WITH_ACK_OPTIMIZATION                   0
 
@@ -86,7 +87,7 @@
 #define NETSTACK_CONF_RADIO                     stm32w_radio_driver
 
 /* ContikiMAC config */
-#define CONTIKIMAC_CONF_COMPOWER                1
+#define CONTIKIMAC_CONF_COMPOWER                0
 #define CONTIKIMAC_CONF_BROADCAST_RATE_LIMIT    0
 #define CONTIKIMAC_CONF_ANNOUNCEMENTS           0
 

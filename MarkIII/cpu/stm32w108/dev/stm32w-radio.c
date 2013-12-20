@@ -225,6 +225,8 @@ static volatile uint8_t onoroff = OFF;
 static uint8_t receiving_packet = 0;
 static s8 last_rssi;
 static volatile StStatus last_tx_status;
+static char keep_listen = 0;
+
 
 #define BUSYWAIT_UNTIL(cond, max_time)                                  \
   do {                                                                  \
@@ -297,7 +299,7 @@ static int stm32w_radio_init(void)
 
     locked = 0;
     process_start(&stm32w_radio_process, NULL);
-
+    stm32w_radio_on();
     return 0;
 }
 /*---------------------------------------------------------------------------*/
@@ -478,7 +480,7 @@ static int stm32w_radio_off(void)
         return 0;
     }
     /* off only if there is no transmission or reception of packet. */
-    if(onoroff == ON && TXBUF_EMPTY() && !receiving_packet)
+    if(onoroff == ON && TXBUF_EMPTY() && !receiving_packet && ! keep_listen)
     {
         LED_RDC_OFF();
         ST_RadioSleep();
@@ -494,7 +496,7 @@ static int stm32w_radio_off(void)
 /*---------------------------------------------------------------------------*/
 static int stm32w_radio_on(void)
 {
-    PRINTF("stm32w: turn radio on\n");
+   // PRINTF("stm32w: turn radio on\n");
     if(onoroff == OFF)
     {
         LED_RDC_ON();
@@ -594,6 +596,7 @@ void ST_RadioTransmitCompleteIsrCallback(StStatus status,
     }
 
     /* Debug outputs. */
+    /*
     if(status == ST_SUCCESS || status == ST_PHY_ACK_RECEIVED)
     {
         PRINTF("stm32w: return status TX_END\r\n");
@@ -614,6 +617,7 @@ void ST_RadioTransmitCompleteIsrCallback(StStatus status,
     {
         PRINTF("stm32w: return status TX_END_INCOMPLETE\r\n");
     }
+    */
 }
 
 

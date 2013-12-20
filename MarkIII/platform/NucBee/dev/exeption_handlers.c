@@ -13,6 +13,7 @@ void hard_fault_handler_c(unsigned int * hardfault_args);
 extern void __attribute__ ((weak)) Default_Handler();
 //handlers
 void NMI_Handler() {
+	Default_Handler();
 }
 __attribute__((__interrupt__))
 

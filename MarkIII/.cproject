@@ -76,7 +76,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="platform/NucBee/dev/button-sensor.c|platform/NucBee/dev/temperature-sensor.c|platform/NucBee/dev/mems.c|platform/NucBee/dev/acc-sensor.c|core/net/uip-udp-packet.h|core/net/uip-udp-packet.c|core/net/uip-split.h|core/net/uip-split.c|core/net/uip-packetqueue.h|core/net/uip-over-mesh.h|core/net/uip-over-mesh.c|core/net/uipopt.h|core/net/uip-neighbor.h|core/net/uip-neighbor.c|core/net/uip-nd6.h|core/net/uiplib.h|core/net/uiplib.c|core/net/uip-icmp6.h|core/net/uip-fw-drv.h|core/net/uip-fw-drv.c|core/net/uip-fw.h|core/net/uip-fw.c|core/net/uip-ds6.h|core/net/uip-debug.h|core/net/uip-debug.c|core/net/uip.h|core/net/uip.c|core/net/uip_arp.h|core/net/uip_arp.c|core/net/uip_arch.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="platform/NucBee/dev/exeption_handlers.c|core/net/tcpip.c|core/net/dhcpc.c|core/net/simple-udp.c|platform/NucBee/dev/button-sensor.c|platform/NucBee/dev/temperature-sensor.c|platform/NucBee/dev/mems.c|platform/NucBee/dev/acc-sensor.c|core/net/uip-udp-packet.h|core/net/uip-udp-packet.c|core/net/uip-split.h|core/net/uip-split.c|core/net/uip-packetqueue.h|core/net/uip-over-mesh.h|core/net/uip-over-mesh.c|core/net/uipopt.h|core/net/uip-neighbor.h|core/net/uip-neighbor.c|core/net/uip-nd6.h|core/net/uiplib.h|core/net/uiplib.c|core/net/uip-icmp6.h|core/net/uip-fw-drv.h|core/net/uip-fw-drv.c|core/net/uip-fw.h|core/net/uip-fw.c|core/net/uip-ds6.h|core/net/uip-debug.h|core/net/uip-debug.c|core/net/uip.h|core/net/uip.c|core/net/uip_arp.h|core/net/uip_arp.c|core/net/uip_arch.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -124,7 +124,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="platform/NucBee/dev/button-sensor.c|platform/NucBee/dev/temperature-sensor.c|platform/NucBee/dev/mems.c|platform/NucBee/dev/acc-sensor.c|core/net/uip-udp-packet.h|core/net/uip-udp-packet.c|core/net/uip-split.h|core/net/uip-split.c|core/net/uip-packetqueue.h|core/net/uip-over-mesh.h|core/net/uip-over-mesh.c|core/net/uipopt.h|core/net/uip-neighbor.h|core/net/uip-neighbor.c|core/net/uip-nd6.h|core/net/uiplib.h|core/net/uiplib.c|core/net/uip-icmp6.h|core/net/uip-fw-drv.h|core/net/uip-fw-drv.c|core/net/uip-fw.h|core/net/uip-fw.c|core/net/uip-ds6.h|core/net/uip-debug.h|core/net/uip-debug.c|core/net/uip.h|core/net/uip.c|core/net/uip_arp.h|core/net/uip_arp.c|core/net/uip_arch.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="platform/NucBee/dev/exeption_handlers.c|core/net/tcpip.c|core/net/dhcpc.c|core/net/simple-udp.c|platform/NucBee/dev/button-sensor.c|platform/NucBee/dev/temperature-sensor.c|platform/NucBee/dev/mems.c|platform/NucBee/dev/acc-sensor.c|core/net/uip-udp-packet.h|core/net/uip-udp-packet.c|core/net/uip-split.h|core/net/uip-split.c|core/net/uip-packetqueue.h|core/net/uip-over-mesh.h|core/net/uip-over-mesh.c|core/net/uipopt.h|core/net/uip-neighbor.h|core/net/uip-neighbor.c|core/net/uip-nd6.h|core/net/uiplib.h|core/net/uiplib.c|core/net/uip-icmp6.h|core/net/uip-fw-drv.h|core/net/uip-fw-drv.c|core/net/uip-fw.h|core/net/uip-fw.c|core/net/uip-ds6.h|core/net/uip-debug.h|core/net/uip-debug.c|core/net/uip.h|core/net/uip.c|core/net/uip_arp.h|core/net/uip_arp.c|core/net/uip_arch.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

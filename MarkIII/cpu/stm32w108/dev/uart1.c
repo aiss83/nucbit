@@ -161,7 +161,9 @@ uart1_init(unsigned long ubr)
 
     SC1_INTMODE = SC_RXVALLEVEL | SC_TXFREELEVEL; // Receive buffer has data interrupt mode and Transmit buffer free interrupt mode: Level triggered.
 
-    INT_SC1CFG = INT_SCRXVAL; // Receive buffer has data interrupt enable
+    int dummy = SC1_DATA;
+
+    INT_SC1CFG = INT_SCRXVAL;// | INT_SCTXFREE; // Receive buffer has data interrupt enable
 
     transmitting = 0;
 
@@ -195,8 +197,12 @@ void halSc1Isr(void)
         INT_SC1FLAG = INT_SCTXFREE;
     }
 #endif /* TX_WITH_INTERRUPT */
+    //don't know which int symbol
+    else if (INT_SC1FLAG & 4){
 
-
+    	int a= 0;
+    	a--;
+    }
 
     ENERGEST_OFF(ENERGEST_TYPE_IRQ);
 

@@ -18,15 +18,17 @@
 # endif
 #endif
 
+#define CRLF
 #undef putchar
 
 int __attribute__(( weak )) putchar(int c)
 {
     uart1_writeb(c);
-
+#ifdef CRLF
     if (c =='\n'){
     	  uart1_writeb('\r');
     }
+#endif
     return c;
 }
 
