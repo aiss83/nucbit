@@ -164,6 +164,8 @@
 //buffer size for modbus transmission
 #define BUS_BUFFERSIZE 256
 
+#define CONF_MESH_PACKET_TIMEOUT CLOCK_SECOND/10
+
 #ifdef PROJECT_CONF_H
 #include PROJECT_CONF_H
 #endif /* PROJECT_CONF_H */

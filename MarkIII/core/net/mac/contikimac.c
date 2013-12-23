@@ -999,9 +999,11 @@ static void init(void) {
 radio_is_on = 0;
 PT_INIT(&pt);
 
+//we don't need no powersaving!
+/*
 rtimer_set(&rt, RTIMER_NOW() + CYCLE_TIME, 1,
 		(void (*)(struct rtimer *, void *)) powercycle, NULL);
-
+*/
 contikimac_is_on = 1;
 
 #if WITH_PHASE_OPTIMIZATION

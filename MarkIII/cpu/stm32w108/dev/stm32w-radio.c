@@ -531,7 +531,7 @@ void ST_RadioReceiveIsrCallback(u8 *packet,
         process_poll(&stm32w_radio_process);
         last_rssi = rssi;
     }
-    LED_RX_OFF();
+
     GET_LOCK();
     is_transmit_ack = 1;
     /* Wait for sending ACK */
@@ -668,7 +668,10 @@ PROCESS_THREAD(stm32w_radio_process, ev, data)
             // Some data packet still in rx buffer (this happens because process_poll doesn't queue requests),
             // so stm32w_radio_process need to be called again.
             process_poll(&stm32w_radio_process);
+        }else{
+        	LED_RX_OFF();
         }
+
     }
 
     PROCESS_END();

@@ -8,6 +8,8 @@
 #ifndef TINYBUS_H_
 #define TINYBUS_H_
 
+#include "tinybus_filter.h"
+
 void
 tinybus_set_recieve_cb(int (*input)(unsigned char *ptr, unsigned int size));
 int tinybus_send(unsigned char *ptr, unsigned int size);
