@@ -64,7 +64,7 @@
 typedef unsigned short uip_stats_t;
 
 #define UART1_CONF_TX_WITH_INTERRUPT    1
-#define UART1_CONF_TX_BUFSIZE 300
+#define UART1_CONF_TX_BUFSIZE 260
 #define PACKETBUF_CONF_SIZE UART1_CONF_TX_BUFSIZE
 //#define WITH_SERIAL_LINE_INPUT      1
 

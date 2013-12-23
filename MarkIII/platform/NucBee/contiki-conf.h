@@ -52,7 +52,7 @@
 #endif /* PLATFORM_CONF_H */
 
 #define DEBUG 0
-
+#define DEMO
 /* we don't have any serial consoles here*/
 /*but in theory we can use radio for that*/
 #define printf(...)
