@@ -7,7 +7,7 @@
 #include "contiki.h"
 #include "net/rime.h"
 #include "net/rime/mesh.h"
-
+#include "dev/stm32w-radio.h"
 //#include "dev/button-sensor.h"
 //#include "sys/etimer.h"
 #include "modzig.h"
@@ -35,7 +35,7 @@ static mz_node_t mz_nodes[] = { {
 //rime slave node
 		.rnode = { { 186, 1 } },
 		//MB slave node
-		.mnode = { .node = 'a' } }
+		.mnode = { .node = 42 } }
 
 };
 
@@ -99,7 +99,7 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 	if (!packet_sending) {
 		packet_sending = 1;
 
-		memcpy(localbuf,ptr,size);
+		memcpy(localbuf, ptr, size);
 		tsize = size;
 		if (master_mode) {
 			//looking for slave
@@ -110,11 +110,14 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 				//XXX:bad node determination, need redo
 
 				if (mz_nodes[i].mnode.node == ptr[0]) {
-					memcpy(&target_addr, &mz_nodes[i].rnode, sizeof(rimeaddr_t));
+					memcpy(&target_addr, &mz_nodes[i].rnode,
+							sizeof(rimeaddr_t));
 					//sadly we can't call mesh_send here, as we run in critical section
 					//so we just marking dispatcher process polling and hoping for good
 					process_poll(&mesh_controller_process);
 					break;
+				} else {
+					packet_sending = 0;					//canceling send
 				}
 
 			}
@@ -131,7 +134,7 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 			//so we just marking dispatcher process polling and hoping for good
 			process_poll(&mesh_controller_process);
 		}
-	}else{
+	} else {
 		out_overrun++;
 	}
 
@@ -140,6 +143,17 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 
 void modZig_controller_init(mz_mode_e mode) {
 	master_mode = 0;
+	/*
+	 * Patching radio power mode
+	 */
+	short pmode = 0
+			| (0 << 1)  //ext. transmitter
+			| (1 << 0); //boost mode
+	ST_RadioSetPowerMode(pmode);
+
+	char power = 3;
+	ST_RadioSetPower(power);
+
 	mesh_open(&mesh, 132, &callbacks);
 	tinybus_set_recieve_cb(got_packet);
 

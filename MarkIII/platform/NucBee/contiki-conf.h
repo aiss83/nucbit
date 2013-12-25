@@ -52,9 +52,9 @@
 #endif /* PLATFORM_CONF_H */
 
 #define DEBUG 0
-#define DEMO
+//#define DEMO
 /* we don't have any serial consoles here*/
-/*but in theory we can use radio for that*/
+/*but in theory we can other channels for that*/
 #define printf(...)
 
 /* Radio and 802.15.4 params */
@@ -81,7 +81,7 @@
 /* Channel check rate (per second) */
 #define NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE    128
 /* Use ACK for optimization (LPP, XMAC) */
-#define WITH_ACK_OPTIMIZATION                   0
+#define WITH_ACK_OPTIMIZATION                   1
 
 /* Netstack config */
 #define NETSTACK_CONF_MAC                       csma_driver
