@@ -31,8 +31,9 @@ static rtimer_clock_t packet_tout = 0xffffffff;
 static unsigned char busBuffer[BUS_BUFFERSIZE];
 static int rsize = 0;
 static int ssize = 0;
-static int tr_tot= 0;
-static int rc_tot= 0;
+//static int tr_tot= 0;
+//static int rc_tot= 0;
+static int tb_overrun = 0;
 static struct rtimer rt;
 
 PROCESS(tinybus_controller_process, "tinybus controller");
@@ -56,7 +57,7 @@ static char input_timeout(struct rtimer *t, void *ptr) {
 
 	if (tinybus_our_packet(busBuffer))
 		packet_recieved_cb(busBuffer, rsize);
-	tr_tot += rsize;
+	//tr_tot += rsize;
 	rsize = 0;
 	INTERRUPTS_ON()
 	;
@@ -89,7 +90,9 @@ int tinybus_send(unsigned char *ptr, unsigned int size) {
 		memcpy(outbuf, ptr, i);
 		process_poll(&tinybus_controller_process);
 		ssize = i;
-		rc_tot += i;
+	//	rc_tot += i;
+	}else{
+		tb_overrun++;
 	}
 	//NOOOOOOOOOOO!!!!!!!!!!!!!!!!1
 	/*

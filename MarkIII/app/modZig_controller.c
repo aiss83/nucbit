@@ -136,6 +136,7 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 		}
 	} else {
 		out_overrun++;
+		leds_toggle(LEDS_CONF_BLUE);
 	}
 
 	return ret;
