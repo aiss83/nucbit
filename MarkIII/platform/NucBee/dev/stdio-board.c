@@ -1,4 +1,6 @@
 #include <stdio.h>
+
+#ifdef UART_CONSOLE
 #include "dev/uart1.h"
 
 
@@ -18,11 +20,17 @@
 # endif
 #endif
 
+#define CRLF
 #undef putchar
 
 int __attribute__(( weak )) putchar(int c)
 {
     uart1_writeb(c);
+#ifdef CRLF
+    if (c =='\n'){
+    	  uart1_writeb('\r');
+    }
+#endif
     return c;
 }
 
@@ -68,4 +76,15 @@ size_t _read(int handle, unsigned char * buffer, size_t size)
 {
     return 0;
 }
+#else
 
+#undef putchar
+int __attribute__(( weak )) putchar(int c)
+{
+    return 0;
+}
+
+void __io_putchar(char c){
+}
+
+#endif

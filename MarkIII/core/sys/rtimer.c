@@ -85,10 +85,10 @@ rtimer_set(struct rtimer *rtimer, rtimer_clock_t time,
     rtimer->time = time;
     next_rtimer = rtimer;
 
-    if(first == 1)
-    {
+   // if(first == 1)
+   // {
         rtimer_arch_schedule(time);
-    }
+   // }
     return RTIMER_OK;
 }
 /*---------------------------------------------------------------------------*/

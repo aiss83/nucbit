@@ -30,6 +30,7 @@
 								</option>
 								<option id="gnu.c.compiler.option.include.paths.1679634984" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/modbus/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/platform/NucBee}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core/dev}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core/lib}&quot;"/>
@@ -37,6 +38,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core/net}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core/sys}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core/net/rime}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core/net/mac}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cpu/stm32w108}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cpu/stm32w108/hal}&quot;"/>
@@ -76,7 +78,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="platform/NucBee/dev/button-sensor.c|platform/NucBee/dev/temperature-sensor.c|platform/NucBee/dev/mems.c|platform/NucBee/dev/acc-sensor.c|core/net/uip-udp-packet.h|core/net/uip-udp-packet.c|core/net/uip-split.h|core/net/uip-split.c|core/net/uip-packetqueue.h|core/net/uip-over-mesh.h|core/net/uip-over-mesh.c|core/net/uipopt.h|core/net/uip-neighbor.h|core/net/uip-neighbor.c|core/net/uip-nd6.h|core/net/uiplib.h|core/net/uiplib.c|core/net/uip-icmp6.h|core/net/uip-fw-drv.h|core/net/uip-fw-drv.c|core/net/uip-fw.h|core/net/uip-fw.c|core/net/uip-ds6.h|core/net/uip-debug.h|core/net/uip-debug.c|core/net/uip.h|core/net/uip.c|core/net/uip_arp.h|core/net/uip_arp.c|core/net/uip_arch.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="app/example-mesh.c|platform/NucBee/modbus/portother.c|core/net/uip_arch.h|core/net/uipopt.h|platform/NucBee/dev/temperature-sensor.c|core/net/uip-over-mesh.h|platform/NucBee/dev/uart1-putchar.c|core/net/uip-split.h|platform/NucBee/dev/button-sensor.c|core/net/uip-udp-packet.c|core/net/uip-fw.h|core/net/uip-fw-drv.h|core/net/uip-neighbor.h|platform/NucBee/dev/mems.c|core/net/uip-fw-drv.c|core/net/uip-over-mesh.c|core/net/uip-split.c|core/net/uip.h|core/net/dhcpc.c|core/net/simple-udp.c|core/net/uip-packetqueue.h|core/net/uip_arp.h|core/net/uip-nd6.h|core/net/uiplib.h|core/net/uip-fw.c|core/net/uip-udp-packet.h|core/net/uip-debug.h|app/not-mesh-master.c|app/not-mesh-slave.c|core/net/uip-icmp6.h|platform/NucBee/dev/acc-sensor.c|core/net/uip_arp.c|core/net/uip-neighbor.c|core/net/uip.c|core/net/uip-debug.c|core/net/uiplib.c|core/net/uip-ds6.h|core/net/tcpip.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -124,7 +126,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="platform/NucBee/dev/button-sensor.c|platform/NucBee/dev/temperature-sensor.c|platform/NucBee/dev/mems.c|platform/NucBee/dev/acc-sensor.c|core/net/uip-udp-packet.h|core/net/uip-udp-packet.c|core/net/uip-split.h|core/net/uip-split.c|core/net/uip-packetqueue.h|core/net/uip-over-mesh.h|core/net/uip-over-mesh.c|core/net/uipopt.h|core/net/uip-neighbor.h|core/net/uip-neighbor.c|core/net/uip-nd6.h|core/net/uiplib.h|core/net/uiplib.c|core/net/uip-icmp6.h|core/net/uip-fw-drv.h|core/net/uip-fw-drv.c|core/net/uip-fw.h|core/net/uip-fw.c|core/net/uip-ds6.h|core/net/uip-debug.h|core/net/uip-debug.c|core/net/uip.h|core/net/uip.c|core/net/uip_arp.h|core/net/uip_arp.c|core/net/uip_arch.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="app/example-mesh.c|platform/NucBee/modbus/portother.c|core/net/uip_arch.h|core/net/uipopt.h|platform/NucBee/dev/temperature-sensor.c|core/net/uip-over-mesh.h|platform/NucBee/dev/uart1-putchar.c|core/net/uip-split.h|platform/NucBee/dev/button-sensor.c|core/net/uip-udp-packet.c|core/net/uip-fw.h|core/net/uip-fw-drv.h|core/net/uip-neighbor.h|platform/NucBee/dev/mems.c|core/net/uip-fw-drv.c|core/net/uip-over-mesh.c|core/net/uip-split.c|core/net/uip.h|core/net/dhcpc.c|core/net/simple-udp.c|core/net/uip-packetqueue.h|core/net/uip_arp.h|core/net/uip-nd6.h|core/net/uiplib.h|core/net/uip-fw.c|core/net/uip-udp-packet.h|core/net/uip-debug.h|app/not-mesh-master.c|app/not-mesh-slave.c|core/net/uip-icmp6.h|platform/NucBee/dev/acc-sensor.c|core/net/uip_arp.c|core/net/uip-neighbor.c|core/net/uip.c|core/net/uip-debug.c|core/net/uiplib.c|core/net/uip-ds6.h|core/net/tcpip.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -171,6 +173,10 @@
 			<resource resourceType="PROJECT" workspacePath="/MarkIII"/>
 		</configuration>
 	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings">
+		<doc-comment-owner id="org.eclipse.cdt.ui.doxygen">
+			<path value=""/>
+		</doc-comment-owner>
+	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 </cproject>

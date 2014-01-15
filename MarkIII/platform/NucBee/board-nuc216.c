@@ -49,7 +49,7 @@ void halBoardPowerDown(void)
                   (GPIOCFG_IN              <<PC6_CFG_BIT)|  /* OSC32K */
                   (GPIOCFG_IN              <<PC7_CFG_BIT);  /* OSC32K */
 
-    leds_init();
+   // leds_init();
 
 }
 
@@ -62,7 +62,7 @@ void sensorsPowerDown()
 {
 
     sensors_status = 0;
-
+/*
     if(button_sensor.status(SENSORS_READY))
     {
         sensors_status |= BUTTON_STATUS_ACTIVE;
@@ -77,16 +77,18 @@ void sensorsPowerDown()
         // Power down accelerometer to save power
         SENSORS_DEACTIVATE(acc_sensor);
     }
+    */
 }
 
 /**/
 void sensorsPowerUp()
 {
-
+/*
     button_sensor.configure(SENSORS_HW_INIT, 0);
     temperature_sensor.configure(SENSORS_HW_INIT, 0);
     acc_sensor.configure(SENSORS_HW_INIT, 0);
-
+*/
+	/*
     if(sensors_status & BUTTON_STATUS_ACTIVE)
     {
         SENSORS_ACTIVATE(button_sensor);
@@ -99,6 +101,7 @@ void sensorsPowerUp()
     {
         SENSORS_ACTIVATE(acc_sensor);
     }
+    */
 }
 
 void halBoardPowerUp(void)
@@ -110,8 +113,8 @@ void halBoardPowerUp(void)
                   (GPIOCFG_IN            <<PA3_CFG_BIT);
     GPIO_PACFGH = (GPIOCFG_IN            <<PA4_CFG_BIT)|  /* PTI EN */
                   (GPIOCFG_IN            <<PA5_CFG_BIT)|  /* PTI_DATA */
-                  (GPIOCFG_IN            <<PA6_CFG_BIT)|
-                  (GPIOCFG_IN            <<PA7_CFG_BIT);
+                  (GPIOCFG_OUT           <<PA6_CFG_BIT)|
+                  (GPIOCFG_OUT           <<PA7_CFG_BIT);
     GPIO_PBCFGL = (GPIOCFG_IN            <<PB0_CFG_BIT)|
                   (GPIOCFG_OUT_ALT       <<PB1_CFG_BIT)|  /* Uart TX */
                   (GPIOCFG_IN            <<PB2_CFG_BIT)|  /* Uart RX */
@@ -125,8 +128,12 @@ void halBoardPowerUp(void)
                   (GPIOCFG_IN            <<PC2_CFG_BIT)|
                   (GPIOCFG_IN            <<PC3_CFG_BIT);
     GPIO_PCCFGH = (GPIOCFG_IN            <<PC4_CFG_BIT)|
-                  (GPIOCFG_IN            <<PC5_CFG_BIT)|
-                  (GPIOCFG_IN            <<PC6_CFG_BIT)|  /* OSC32K */
+                  (GPIOCFG_OUT_ALT       <<PC5_CFG_BIT)|	// TxActive
+                  (GPIOCFG_OUT_ALT       <<PC6_CFG_BIT)|  /* OSC32K */ // nTxActive
                   (GPIOCFG_IN            <<PC7_CFG_BIT);  /* OSC32K */
 
+    //may be this will turn on LNA/PA
+   // GPIO_PASET = PA7 | PA6 ;
+    halGpioSet(PORTx_PIN(PORTA, 6), TRUE);
+    halGpioSet(PORTx_PIN(PORTA, 7), TRUE);
 }

@@ -50,7 +50,11 @@
 
 #include <stddef.h> /* For offsetof */
 
-#define PACKET_TIMEOUT (CLOCK_SECOND * 10)
+#ifdef  CONF_MESH_PACKET_TIMEOUT
+#define PACKET_TIMEOUT CONF_MESH_PACKET_TIMEOUT
+#else
+#define PACKET_TIMEOUT CLOCK_SECOND/100 //(CLOCK_SECOND * 10)
+#endif
 
 #define DEBUG 0
 #if DEBUG
@@ -59,6 +63,8 @@
 #else
 #define PRINTF(...)
 #endif
+
+static int pd_timeout = PACKET_TIMEOUT;
 
 /*---------------------------------------------------------------------------*/
 static void
@@ -105,8 +111,10 @@ data_packet_forward(struct multihop_conn *multihop,
         PRINTF("data_packet_forward: queueing data, sending rreq\n");
         c->queued_data = queuebuf_new_from_packetbuf();
         rimeaddr_copy(&c->queued_data_dest, dest);
+        /*
         route_discovery_discover(&c->route_discovery_conn, dest, PACKET_TIMEOUT);
-
+*/
+        route_discovery_discover(&c->route_discovery_conn, dest, pd_timeout);
         return NULL;
     }
     else
@@ -210,4 +218,9 @@ mesh_send(struct mesh_conn *c, const rimeaddr_t *to)
     return 1;
 }
 /*---------------------------------------------------------------------------*/
+
+void mesh_inc_tout(){
+	pd_timeout++;
+}
+
 /** @} */

@@ -51,15 +51,21 @@
 #include "platform-conf.h"
 #endif /* PLATFORM_CONF_H */
 
+#define DEBUG 0
+//#define DEMO
+/* we don't have any serial consoles here*/
+/*but in theory we can other channels for that*/
+#define printf(...)
+
 /* Radio and 802.15.4 params */
 /* 802.15.4 radio channel */
 #define RF_CHANNEL                              16
 /* 802.15.4 PAN ID */
-#define IEEE802154_CONF_PANID                   0x1234
+#define IEEE802154_CONF_PANID                   0x666
 /* Use EID 64, enable hardware autoack and address filtering */
-#define RIMEADDR_CONF_SIZE                      8
+#define RIMEADDR_CONF_SIZE                      2
 #define UIP_CONF_LL_802154                      1
-#define ST_CONF_RADIO_AUTOACK                   1
+#define ST_CONF_RADIO_AUTOACK                   0
 /* Number of buffers for incoming frames */
 #define RADIO_RXBUFS                            2
 /* Set to 0 for non ethernet links */
@@ -69,13 +75,13 @@
 /* TX routine passes the cca/ack result in the return parameter */
 #define RDC_CONF_HARDWARE_ACK                   1
 /* TX routine does automatic cca and optional backoff */
-#define RDC_CONF_HARDWARE_CSMA                  0
+#define RDC_CONF_HARDWARE_CSMA                  1
 /* RDC debug with LED */
 #define RDC_CONF_DEBUG_LED                      0
 /* Channel check rate (per second) */
-#define NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE    8
+#define NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE    128
 /* Use ACK for optimization (LPP, XMAC) */
-#define WITH_ACK_OPTIMIZATION                   0
+#define WITH_ACK_OPTIMIZATION                   1
 
 /* Netstack config */
 #define NETSTACK_CONF_MAC                       csma_driver
@@ -84,7 +90,7 @@
 #define NETSTACK_CONF_RADIO                     stm32w_radio_driver
 
 /* ContikiMAC config */
-#define CONTIKIMAC_CONF_COMPOWER                1
+#define CONTIKIMAC_CONF_COMPOWER                0
 #define CONTIKIMAC_CONF_BROADCAST_RATE_LIMIT    0
 #define CONTIKIMAC_CONF_ANNOUNCEMENTS           0
 
@@ -153,6 +159,12 @@
 #define NETSTACK_CONF_NETWORK rime_driver
 
 #endif /* WITH_UIP6 */
+
+
+//buffer size for modbus transmission
+#define BUS_BUFFERSIZE 256
+
+#define CONF_MESH_PACKET_TIMEOUT CLOCK_SECOND/10
 
 #ifdef PROJECT_CONF_H
 #include PROJECT_CONF_H

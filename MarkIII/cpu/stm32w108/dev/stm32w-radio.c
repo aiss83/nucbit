@@ -57,10 +57,10 @@
 #include "net/rime/rimestats.h"
 #include "sys/rtimer.h"
 
-#define DEBUG 0
+//#define DEBUG 0
 
 #include "dev/leds.h"
-#define LED_ACTIVITY 0
+#define LED_ACTIVITY 1
 
 #ifdef ST_CONF_RADIO_AUTOACK
 #define ST_RADIO_AUTOACK ST_CONF_RADIO_AUTOACK
@@ -152,7 +152,7 @@ int8_t mac_retries_left;
                                   ENERGEST_OFF(ENERGEST_TYPE_LISTEN); \
                                 }                                     \
                               }
-#if RDC_CONF_HARDWARE_CSMA
+#if !RDC_CONF_HARDWARE_CSMA
 #define ST_RADIO_CHECK_CCA FALSE
 #define ST_RADIO_CCA_ATTEMPT_MAX 0
 #define ST_BACKOFF_EXP_MIN 0
@@ -173,7 +173,7 @@ const RadioTransmitConfig radioTransmitConfig =
     TRUE                        // appendCrc;
 };
 
-#define MAC_RETRIES 0
+//#define MAC_RETRIES 0
 
 /*
  * The buffers which hold incoming data.
@@ -225,6 +225,8 @@ static volatile uint8_t onoroff = OFF;
 static uint8_t receiving_packet = 0;
 static s8 last_rssi;
 static volatile StStatus last_tx_status;
+static char keep_listen = 0;
+
 
 #define BUSYWAIT_UNTIL(cond, max_time)                                  \
   do {                                                                  \
@@ -281,7 +283,7 @@ static int stm32w_radio_init(void)
 
     // Initialize radio (analog section, digital baseband and MAC).
     // Leave radio powered up in non-promiscuous rx mode.
-    ST_RadioInit(ST_RADIO_POWER_MODE_OFF);
+    ST_RadioInit(ST_RADIO_POWER_MODE_RX_ON);
 
     onoroff = OFF;
     ST_RadioSetPanId(IEEE802154_PANID);
@@ -297,7 +299,7 @@ static int stm32w_radio_init(void)
 
     locked = 0;
     process_start(&stm32w_radio_process, NULL);
-
+    stm32w_radio_on();
     return 0;
 }
 /*---------------------------------------------------------------------------*/
@@ -478,7 +480,7 @@ static int stm32w_radio_off(void)
         return 0;
     }
     /* off only if there is no transmission or reception of packet. */
-    if(onoroff == ON && TXBUF_EMPTY() && !receiving_packet)
+    if(onoroff == ON && TXBUF_EMPTY() && !receiving_packet && ! keep_listen)
     {
         LED_RDC_OFF();
         ST_RadioSleep();
@@ -494,7 +496,7 @@ static int stm32w_radio_off(void)
 /*---------------------------------------------------------------------------*/
 static int stm32w_radio_on(void)
 {
-    PRINTF("stm32w: turn radio on\n");
+   // PRINTF("stm32w: turn radio on\n");
     if(onoroff == OFF)
     {
         LED_RDC_ON();
@@ -529,7 +531,7 @@ void ST_RadioReceiveIsrCallback(u8 *packet,
         process_poll(&stm32w_radio_process);
         last_rssi = rssi;
     }
-    LED_RX_OFF();
+
     GET_LOCK();
     is_transmit_ack = 1;
     /* Wait for sending ACK */
@@ -594,6 +596,7 @@ void ST_RadioTransmitCompleteIsrCallback(StStatus status,
     }
 
     /* Debug outputs. */
+    /*
     if(status == ST_SUCCESS || status == ST_PHY_ACK_RECEIVED)
     {
         PRINTF("stm32w: return status TX_END\r\n");
@@ -614,6 +617,7 @@ void ST_RadioTransmitCompleteIsrCallback(StStatus status,
     {
         PRINTF("stm32w: return status TX_END_INCOMPLETE\r\n");
     }
+    */
 }
 
 
@@ -664,7 +668,10 @@ PROCESS_THREAD(stm32w_radio_process, ev, data)
             // Some data packet still in rx buffer (this happens because process_poll doesn't queue requests),
             // so stm32w_radio_process need to be called again.
             process_poll(&stm32w_radio_process);
+        }else{
+        	LED_RX_OFF();
         }
+
     }
 
     PROCESS_END();

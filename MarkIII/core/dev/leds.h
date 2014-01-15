@@ -55,18 +55,26 @@ void leds_init(void);
  */
 void leds_blink(void);
 
-#ifndef LEDS_GREEN
-#define LEDS_GREEN  1
+#ifndef LEDS_CONF_GREEN
+#define LEDS_GREEN  0
+#else
+#define  LEDS_GREEN LEDS_CONF_GREEN
 #endif /* LEDS_GREEN */
-#ifndef LEDS_YELLOW
-#define LEDS_YELLOW  2
-#endif /* LEDS_YELLOW */
-#ifndef LEDS_RED
-#define LEDS_RED  4
+#ifndef LEDS_CONF_RED
+#define LEDS_RED  1
+#else
+#define  LEDS_RED LEDS_CONF_RED
 #endif /* LEDS_RED */
-#ifndef LEDS_BLUE
-#define LEDS_BLUE  LEDS_YELLOW
+#ifndef LEDS_CONF_BLUE
+#define LEDS_BLUE  2
+#else
+#define  LEDS_BLUE LEDS_CONF_BLUE
 #endif /* LEDS_BLUE */
+#ifndef LEDS_CONF_YELLOW
+#define LEDS_YELLOW  LEDS_BLUE
+#else
+#define  LEDS_YELLOW LEDS_CONF_YELLOW
+#endif /* LEDS_YELLOW */
 
 #ifdef LEDS_CONF_ALL
 #define LEDS_ALL    LEDS_CONF_ALL
