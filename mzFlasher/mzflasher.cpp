@@ -370,10 +370,12 @@ QByteArray p;
 */
 bool mzFlasher::sanityCheck(){
 	bool ret = true;
-	//validatio pattern
+	//validation pattern
+#if (RIMEADDR_SIZE==8)
 	QRegExp rx("[0-9,a-f,A-F]{1,2}.[0-9,a-f,A-F]{1,2}.[0-9,a-f,A-F]{1,2}.[0-9,a-f,A-F]{1,2}.[0-9,a-f,A-F]{1,2}.[0-9,a-f,A-F]{1,2}.[0-9,a-f,A-F]{1,2}.[0-9,a-f,A-F]{1,2}");
-
-	
+#else if (RIMEADDR_SIZE==2)
+		QRegExp rx("[0-9,a-f,A-F]{1,2}.[0-9,a-f,A-F]{1,2}");
+#endif
 	int i,j;
 	for(i = 0; i < ui.treeWidget->topLevelItemCount(); i++){
 		
@@ -513,7 +515,7 @@ bool mzFlasher::sanityCheck(){
 					break;
 
 			case RPL_MAC:				//простите меня, индусы
-					ui.lblRime->setText(ieee2str(&QByteArray((char*)pp->data,(8))));  
+					ui.lblRime->setText(ieee2str(&QByteArray((char*)pp->data,(RIMEADDR_SIZE))));  
 					getConf();
 					break;
 			default: 
@@ -607,7 +609,7 @@ bool mzFlasher::sanityCheck(){
 		QByteArray a;
 		QStringList l = str->split('.');
 		int i;
-		for(i = 0; i >= l.size() ; i++){
+		for(i = l.size()-1; i >= 0 ; i--){
 			a.append((char)l[i].toInt(NULL,16));
 			//qDebug() << a.toHex();
 		}
@@ -618,10 +620,15 @@ bool mzFlasher::sanityCheck(){
 	}
 
 	QString mzFlasher::ieee2str(QByteArray *d){		
-		//std::reverse(d->begin(), d->end());
+		std::reverse(d->begin(), d->end());
 		QString t(d->toHex());
 
 		///shit-shit-shit
+		for(int i=0; i < RIMEADDR_SIZE-1;i++){
+			t.insert(2+i*3,'.');
+		}
+
+			/*
 		t.insert(2,'.');
 		t.insert(5,'.');
 		t.insert(8,'.');
@@ -629,7 +636,7 @@ bool mzFlasher::sanityCheck(){
 		t.insert(14,'.');
 		t.insert(17,'.');
 		t.insert(20,'.');
-
+		*/
 		return t;
 	}
 
@@ -662,7 +669,7 @@ bool mzFlasher::sanityCheck(){
 			for(i=0; i < cfg->recNum; i++){
 				//inserting slave
 				QTreeWidgetItem *n = new QTreeWidgetItem;
-				QByteArray rm((const char *)nd->rnode.u8,8);
+				QByteArray rm((const char *)nd->rnode.u8,RIMEADDR_SIZE);
 								
 				n->setText(0,ieee2str(&rm));
 				n->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);

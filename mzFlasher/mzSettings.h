@@ -1,6 +1,6 @@
 
 #pragma pack(push,1)
-#define RIMEADDR_SIZE 8
+#define RIMEADDR_SIZE 2
 /**
       * Serial port Baudrate
       */
