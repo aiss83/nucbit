@@ -1,0 +1,3 @@
+[submodule "qtUtils-flasher"]
+	path = qtUtils-flasher
+	url = D:/Projects/Custom/Nucler/qt-MButils/mzFlasher
