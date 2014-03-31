@@ -102,7 +102,7 @@ PROCINIT(NULL);
 #define DEFAULT_RADIO_CCA_THRESHOLD -77
 
 //void modZig_controller_init();
-
+void utility_mode_init();
 /*---------------------------------------------------------------------------*/
 static void set_rime_addr(void) {
 	int i;
@@ -133,7 +133,7 @@ static void set_rime_addr(void) {
 	printf("Rime started with address ");
 	for (i = 0; i < sizeof(rimeaddr_t) - 1; i++) {
 		printf("%d.", rimeaddr_node_addr.u8[i]);
-	} printf("%d\n", rimeaddr_node_addr.u8[i]);
+	}printf("%d\n", rimeaddr_node_addr.u8[i]);
 }
 /*---------------------------------------------------------------------------*/
 int main(void) {
@@ -180,14 +180,15 @@ int main(void) {
 
 	set_rime_addr();
 
-	printf("%s %s, channel check rate %lu Hz\n",
-			NETSTACK_MAC.name, NETSTACK_RDC.name,
-			CLOCK_SECOND / (NETSTACK_RDC.channel_check_interval() == 0 ? 1:
-					NETSTACK_RDC.channel_check_interval())); printf("802.15.4 PAN ID 0x%x, EUI-%d:",
-			IEEE802154_CONF_PANID, UIP_CONF_LL_802154?64:16);
-	// uip_debug_lladdr_print(&rimeaddr_node_addr);
-	printf(", radio channel %u\n", RF_CHANNEL);
-
+	/*
+	 printf("%s %s, channel check rate %lu Hz\n",
+	 NETSTACK_MAC.name, NETSTACK_RDC.name,
+	 CLOCK_SECOND / (NETSTACK_RDC.channel_check_interval() == 0 ? 1:
+	 NETSTACK_RDC.channel_check_interval()));printf("802.15.4 PAN ID 0x%x, EUI-%d:",
+	 IEEE802154_CONF_PANID, UIP_CONF_LL_802154?64:16);
+	 // uip_debug_lladdr_print(&rimeaddr_node_addr);
+	 printf(", radio channel %u\n", RF_CHANNEL);
+	 */
 	procinit_init();
 
 	energest_init();
@@ -201,12 +202,50 @@ int main(void) {
 	 and no packets will be sent. DEFAULT_RADIO_CCA_THRESHOLD is
 	 defined in this file. */
 	ST_RadioSetEdCcaThreshold(DEFAULT_RADIO_CCA_THRESHOLD);
+	/*
+	 if (rimeaddr_node_addr.u8[0] == 186 && rimeaddr_node_addr.u8[1] == 170) {
+	 modZig_controller_init(MZ_MASTER);
+	 } else {
+	 modZig_controller_init(MZ_SLAVE);
+	 }
+	 */
+	/*
+	StStatus flashStatus;
 
-	if (rimeaddr_node_addr.u8[0] == 186 && rimeaddr_node_addr.u8[1] == 170) {
-		modZig_controller_init(MZ_MASTER);
-	} else {
-		modZig_controller_init(MZ_SLAVE);
+	int tsize = 16;
+
+	char tst[tsize];
+	memset(tst, 0x5a, tsize);
+
+	flashStatus = halInternalFlashErase(MFB_PAGE_ERASE, 0x0801F800);
+	if (flashStatus == 0) {
+		//restoring default option bytes
+
+		//saving config
+		flashStatus = halInternalFlashWrite(0x0801F800, (int16u*) tst,
+				tsize/2);
+
 	}
+*/
+	/**
+	 * Here will be mode select depending on some pin state
+	 */
+	//pin configuration
+	//pull config
+	char pin = PA4_BIT;
+	GPIO_PAOUT |= GPIOOUT_PULLUP << pin;//don't have HAL function to this :-(
+	//setting as input
+	halGpioConfig(PORTx_PIN(PORTA, pin), GPIOCFG_IN_PUD );
+
+
+	//reading pin
+	char mode = GPIO_PAIN & PA4_MASK;
+	if (mode) {
+		modZig_controller_init();
+	} else {
+		utility_mode_init();
+	}
+
 	//  autostart_start(autostart_processes);
 #if UIP_CONF_IPV6
 	printf("Tentative link-local IPv6 address ");

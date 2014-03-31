@@ -14,7 +14,7 @@ typedef struct node_list_struct {
 } nlist_t;
 
 int tinybus_filter_init();
-int tinybus_add_node(nlist_t *new, char node);
+int tinybus_add_node( char node);
 int tinybus_del_node(char node);
 void tinybus_setbypass(char set);
 

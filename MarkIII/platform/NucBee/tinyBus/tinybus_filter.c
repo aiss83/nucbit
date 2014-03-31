@@ -6,23 +6,28 @@
  */
 #include <stdlib.h>
 #include "contiki.h"
+#include "mmem.h"
 #include "tinybus_filter.h"
 //#include "lib/list.h"
 
-static nlist_t *nodes;
-static nlist_t null_node;
+struct mmem data;
+
+static char nodes[255];
+static unsigned char num = 0;
 static char bypass_mode = 0; //filter disabled
 
 char tinybus_our_packet(unsigned char *ptr) {
 	char ret = 0;
+	unsigned char i;
 	//char match = 0;
 	nlist_t *cur = nodes;
-	if (!bypass_mode) {
-		do {
-			if (ptr[0] == cur->node) {
-				ret = 1; //positive match
+	// 0 means broadcast address
+	if (!bypass_mode || (ptr[0]==0)) {
+		for (i=0; i< num && ret == 0; i++){
+			if(nodes[i]==ptr[0]){
+				ret = 1;
 			}
-		} while (cur->next != NULL && ret == 0);
+		}
 	} else {
 		ret = 1;
 	}
@@ -31,21 +36,14 @@ char tinybus_our_packet(unsigned char *ptr) {
 
 int tinybus_filter_init() {
 	int ret = 0;
-	//list_init(nodes);
-	nodes = &null_node;
-	nodes->next = NULL;
-	nodes->node = 0; //we anyway should process broadcasts
+
 	return ret;
 }
 
-int tinybus_add_node(nlist_t *new, char node) {
-	//nlist_t *new = malloc(sizeof(nlist_t));
-
-	new->node = node;
-	new->next = nodes;
-	nodes = new;
-
-	return new != NULL;
+int tinybus_add_node(char node) {
+	nodes[num] = node;
+	num++;
+	return 0;
 }
 
 int tinybus_del_node(char node) {

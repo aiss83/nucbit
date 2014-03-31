@@ -7,16 +7,17 @@
 #include "contiki.h"
 #include "net/rime.h"
 #include "net/rime/mesh.h"
+#include "dev/leds.h"
 #include "dev/stm32w-radio.h"
 //#include "dev/button-sensor.h"
 //#include "sys/etimer.h"
 #include "modzig.h"
-
+#include "mzConfig.h"
 #include <stdio.h>
 #include <string.h>
 
 static struct mesh_conn mesh;
-static char master_mode;
+static mz_mode_e mode;
 //static rimeaddr_t master_addr;
 static rimeaddr_t target_addr;
 static int out_overrun = 0;
@@ -25,20 +26,42 @@ static unsigned char localbuf[256];
 static int tsize;
 static char packet_sending = 0;
 extern void mesh_inc_tout();
+
+unsigned int mz_speed_val[] = { 100, ///< 110 bits/sec
+		300,    ///< 300 bits/sec
+		600,    ///< 600 bits/sec
+		1200,   ///< 1200 bits/sec
+		2400,   ///< 2400 bits/sec
+		4800,   ///< 4800 bits/sec
+		9600,   ///<9600 bits/sec
+		14400,  ///< 14400 bits/sec
+		19200,  ///< 19200 bits/sec (default)
+		38400,  ///< 38400 bits/sec
+		56000,  ///< 56000 bits/sec
+		57600,  ///< 57600 bits/sec
+		115200, ///< 115200 bits/sec
+		128000, ///< 128000 bits/sec
+		256000, ///< 256000 bits/sec
+		460800, 921600, ///< 921600 bits/sec
+		1250000 ///< 1250000 bits/sec
+		};
+
 /*
  *
  * nodes table - need to develop way to store them apart main program,
  * 	ex. in coffeFS or any other way
  *
  */
-static mz_node_t mz_nodes[] = { {
-//rime slave node
-		.rnode = { { 186, 1 } },
-		//MB slave node
-		.mnode = { .node = 42 } }
 
-};
+//static mz_node_t *mz_nodes = &(NODECONF->nodeList);
+/*{ {
+ //rime slave node
+ .rnode = { { 186, 1 } },
+ //MB slave node
+ .mnode = { .node = 42 } }
 
+ };
+ */
 /*---------------------------------------------------------------------------*/
 PROCESS(mesh_controller_process, "Mesh controller");
 //AUTOSTART_PROCESSES(&mesh_controller_process);
@@ -71,8 +94,9 @@ static void recv(struct mesh_conn *c, const rimeaddr_t *from, uint8_t hops) {
 	 packetbuf_copyfrom(MESSAGE, strlen(MESSAGE));
 	 mesh_send(&mesh, from);*/
 	//saving incoming address
-	if (!master_mode) {
-		memcpy(&target_addr, from, sizeof(rimeaddr_t));
+	if (mode == MZ_SLAVE) {
+		//memcpy(&target_addr, from, sizeof(rimeaddr_t));
+		rimeaddr_copy(&target_addr, from);
 	}
 	INTERRUPTS_OFF()
 	;
@@ -101,39 +125,60 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 
 		memcpy(localbuf, ptr, size);
 		tsize = size;
-		if (master_mode) {
+		if (mode == MZ_MASTER) {
+			unsigned char adr = ptr[0];
 			//looking for slave
-#ifndef DEMO
-			int i;
-			for (i = 0; i < (sizeof(mz_nodes) / sizeof(mz_node_t)); i++) {
-				//tinybus_add_node(&mz_nodes[i].mnode, mz_nodes[i].mnode.node);
-				//XXX:bad node determination, need redo
+			//tinybus_add_node(&mz_nodes[i].mnode, mz_nodes[i].mnode.node);
+			//XXX:bad node determination, need redo
+			/*
+			 if (mz_nodes[i].mnode.node == ptr[0]) {
+			 memcpy(&target_addr, &mz_nodes[i].rnode,
+			 sizeof(rimeaddr_t));
+			 //sadly we can't call mesh_send here, as we run in critical section
+			 //so we just marking dispatcher process polling and hoping for good
+			 process_poll(&mesh_controller_process);
+			 break;
+			 } else {
+			 packet_sending = 0;					//canceling send
+			 }
 
-				if (mz_nodes[i].mnode.node == ptr[0]) {
-					memcpy(&target_addr, &mz_nodes[i].rnode,
-							sizeof(rimeaddr_t));
-					//sadly we can't call mesh_send here, as we run in critical section
-					//so we just marking dispatcher process polling and hoping for good
-					process_poll(&mesh_controller_process);
-					break;
-				} else {
-					packet_sending = 0;					//canceling send
+			 }
+			 */
+			if (adr) {
+				int i, j;
+				char found = 0;
+				mz_node_t *n = mzCONFIG->nodeList;
+				for (i = 0; i < (mzCONFIG->recNum) && !found; i++) {
+					for (j = 0; j < n->num && !found; j++) {
+						if (n->mnodes[j] == adr ) {
+							//memcpy(&target_addr, &n->rnode, sizeof(rimeaddr_t));
+							rimeaddr_copy(&target_addr, &n->rnode);
+
+							found = 1;
+						}
+					}
+					//verify shift calculation
+					n = (mz_node_t *) (((char*) n) + NODE_SHIFT(n));
+					//n += (sizeof(mz_node_t)+ (n->num - 1));
 				}
 
+				if (!found) {
+					packet_sending = 0;					//canceling send
+				}
+			} else {					//0 mean broadcast
+										//but broadcast not inmplemented
+										//memcpy(&target_addr, &rimeaddr_bcast, sizeof(rimeaddr_t));
 			}
-#else
-			target_addr.u8[0] = 186;
-			target_addr.u8[1] = 1;
-			//sadly we can't call mesh_send here, as we run in critical section
-			//so we just marking dispatcher process polling and hoping for good
-			process_poll(&mesh_controller_process);
-#endif
+
 		} else {
 			//relaying to master
 			//sadly we can't call mesh_send here, as we run in critical section
 			//so we just marking dispatcher process polling and hoping for good
-			process_poll(&mesh_controller_process);
+
 		}
+
+		if(packet_sending)
+			process_poll(&mesh_controller_process);
 	} else {
 		out_overrun++;
 		leds_toggle(LEDS_CONF_BLUE);
@@ -142,42 +187,60 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 	return ret;
 }
 
-void modZig_controller_init(mz_mode_e mode) {
-	master_mode = 0;
+void modZig_controller_init() {
+	//checking for valid config
+	if (mzCONFIG->mode != MZ_MASTER && mzCONFIG->mode != MZ_SLAVE) {
+		//halting
+		while (1) {
+			leds_on(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);
+			watchdog_periodic();
+			clock_delay(5000);
+			leds_off(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);
+			clock_delay(5000);
+		}
+	}
+
+	mode = mzCONFIG->mode;
 	/*
 	 * Patching radio power mode
 	 */
-	short pmode = 0
-			| (0 << 1)  //ext. transmitter
+	short pmode = 0 | (0 << 1)  //ext. transmitter
 			| (1 << 0); //boost mode
 	ST_RadioSetPowerMode(pmode);
 
 	char power = 3;
 	ST_RadioSetPower(power);
 
-	mesh_open(&mesh, 132, &callbacks);
+	mesh_open(&mesh, 123, &callbacks);
 	tinybus_set_recieve_cb(got_packet);
 
-	tinybus_init(115200);
+	tinybus_init(mz_speed_val[mzCONFIG->speed]);
 	process_start(&mesh_controller_process, NULL);
 
-	if (mode == MZ_MASTER) {
-		master_mode = 1;
-		//setting up nodes filters
-		int i;
-		for (i = 0; i < (sizeof(mz_nodes) / sizeof(mz_node_t)); i++) {
-			tinybus_add_node(&mz_nodes[i].mnode, mz_nodes[i].mnode.node);
-		}
+	//moved filtering into got_gacket
+	/*
+	 if (mode == MZ_MASTER) {
+	 //master_mode = 1;
+	 //setting up nodes filters
+	 int i,j;
+	 mz_node_t *n = mzCONFIG->nodeList;
+	 for (i = 0; i < (mzCONFIG->recNum); i++) {
+	 for(j=0;j < n->num;j++){
+	 tinybus_add_node(n->mnodes[j]);
+	 }
+	 //verify shift calculation
+	 n += (sizeof(mz_node_t)+ (n->num - 1));
+	 }
 
-	} else if (mode == MZ_SLAVE) {
-		//nothing to do at this point
-		tinybus_setbypass(TRUE);		//disabling tinybus filters
-	} else {
-		while (1) {
-			//WTF????
-		}
-	}
-
+	 } else if (mode == MZ_SLAVE) {
+	 //nothing to do at this point
+	 tinybus_setbypass(TRUE);		//disabling tinybus filters
+	 } else {
+	 while (1) {
+	 //WTF????
+	 }
+	 }
+	 */
 }
 /*---------------------------------------------------------------------------*/
 //PROCESS_THREAD(mesh_controller_process, ev, data)

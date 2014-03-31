@@ -55,7 +55,8 @@ static char input_timeout(struct rtimer *t, void *ptr) {
 	INTERRUPTS_OFF()
 	;
 
-	if (tinybus_our_packet(busBuffer))
+	//
+	//if (tinybus_our_packet(busBuffer))
 		packet_recieved_cb(busBuffer, rsize);
 	//tr_tot += rsize;
 	rsize = 0;
@@ -106,9 +107,9 @@ int tinybus_send(unsigned char *ptr, unsigned int size) {
 //
 int tinybus_init(unsigned long baud) {
 	int ret = 0;
-	tinybus_filter_init();
+	//tinybus_filter_init();
 	///keep it here by now
-	tinybus_setbypass(TRUE);
+	//tinybus_setbypass(TRUE);
 	//uart setup
 	uart1_init(baud);
 	//calculating packet timer
@@ -124,7 +125,7 @@ int tinybus_init(unsigned long baud) {
 }
 
 PROCESS_THREAD(tinybus_controller_process, ev, data) {
-	int t;
+//	int t;
 	PROCESS_BEGIN()
 		;
 

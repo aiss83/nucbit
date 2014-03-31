@@ -33,11 +33,9 @@
 /*---------------------------------------------------------------------------*/
 /**
 * \file
-*     platform-conf.h for MB851.
+*     platform-conf.h for NUC-216.
 * \author
-*     Salvatore Pitrulli <salvopitru@users.sourceforge.net>
-*     Chi-Anh La <la@imag.fr>
-*     Simon Duquennoy <simonduq@sics.se>
+*     Myrex <myrex@deep-one.in>
 */
 /*---------------------------------------------------------------------------*/
 
@@ -48,8 +46,8 @@
 
 #include <inttypes.h>
 #include <string.h>  // For memcmp().
-
-#define CRLF  //auto append caret return symbol
+#include <hal/micro/cortexm3/memmap.h>
+//#define CRLF  //auto append caret return symbol
 
 /* Platform-dependent definitions */
 #define CC_CONF_REGISTER_ARGS          0
