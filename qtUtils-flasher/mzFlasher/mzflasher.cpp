@@ -249,7 +249,14 @@ void mzFlasher::portClick(){
 void mzFlasher::addNode(){
 	if (ui.treeWidget->topLevelItemCount() < MAXNODES){
 		QTreeWidgetItem *n = new QTreeWidgetItem;
-		n->setText(0,"0.0.0.0.0.0.0.0");
+
+		#if (RIMEADDR_SIZE==8)
+	n->setText(0,"0.0.0.0.0.0.0.0");
+#else if (RIMEADDR_SIZE==2)
+		n->setText(0,"0.0");
+#endif
+
+		
 
 		n->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
 		ui.treeWidget->addTopLevelItem(n);
@@ -267,7 +274,7 @@ void mzFlasher::delNode(){
 				n=ui.treeWidget->selectedItems()[0];
 			}
 
-			if (QMessageBox(QMessageBox::Question,"","Are you sure want to delete this node?",QMessageBox::Yes| QMessageBox::No,this).exec()){
+			if (QMessageBox(QMessageBox::Question,"","Are you sure want to delete this node?",QMessageBox::Yes| QMessageBox::No,this).exec()== QMessageBox::Yes){
 				//ui.treeWidget->removeItemWidget(n,0);
 				delete n;
 			}
@@ -499,7 +506,7 @@ bool mzFlasher::sanityCheck(){
 			
 			switch(pp->cmd){
 			case RPL_PONG: 
-					qDebug() << " got PONG!";
+					qDebug() << "got PONG!";
 					ui.grpCfg->setEnabled(true);
 					break;
 			case RPL_DATA_CNF: 
@@ -519,7 +526,7 @@ bool mzFlasher::sanityCheck(){
 					getConf();
 					break;
 			default: 
-					qDebug() << "Unknown packet with correct crc";
+					qDebug() << "Unknown packet with correct crc, id:"<< (short)(pp->cmd);
 					break;
 			}
 
@@ -534,7 +541,7 @@ bool mzFlasher::sanityCheck(){
     QByteArray tmp;
 	port.Read(&tmp,n);
 
-	qDebug() << "DataIn"<< n;
+	//qDebug() << "DataIn"<< n;
 
 	int i;
 	unsigned char c;
