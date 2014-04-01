@@ -205,6 +205,9 @@ void send_packet(unsigned char *p, int len) {
 void utility_mode_init() {
 	uart1_init(UTIL_SPEED);
 	uart1_set_input(utility_input_byte);
+
+	leds_on(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);//mode indication
+
 	process_start(&utility_process, NULL);
 }
 /*---------------------------------------------------------------------------*/

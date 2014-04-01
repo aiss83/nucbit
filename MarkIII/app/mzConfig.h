@@ -78,7 +78,7 @@ typedef struct{
 	 char mnodes[];
 } mz_node_t;
 
-#define NODE_SHIFT(x) (sizeof(mz_node_t)+ x->num - 1)
+#define NODE_SHIFT(x) (sizeof(mz_node_t)+ x->num)
 
 #define MAXTABLE ((MZ_CONFIGSIZE- sizeof(mz_mode_e)- sizeof(char)- sizeof(mz_line_speed_t))/ (sizeof(mz_node_t)))
 
