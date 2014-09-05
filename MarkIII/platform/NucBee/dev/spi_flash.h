@@ -36,7 +36,18 @@ typedef enum {
 	CMD_PAGE_ER = 0x81,
 	CMD_BLOCK_ER = 0x50,
 	//CMD_CHIP_ERASE, //banned by errata
+
+	CMD_READ_STS = 0xd7,
+
 } sflash_cmd_t;
 
+
+typedef struct {
+	unsigned char pSize:1;
+	unsigned char protect:1;
+	unsigned char :4;
+	unsigned char compare:1;
+	unsigned char ready:1;
+} sflast_stsreg_t;
 
 #endif /* SPI_FLASH_H_ */

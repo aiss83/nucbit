@@ -14,9 +14,24 @@ int spi_flash_init() {
 	return ret;
 }
 
+static sflast_stsreg_t fl_status() {
+	spi2_enable_cs();
+	sflast_stsreg_t ret;
+	int tmp = CMD_READ_STS;
+	spi2_write((char*) &tmp, 1);
+	spi2_read((char*) &ret, 1); // with extra dummy-byte
+
+	spi2_disable_cs();
+	return (ret);
+}
+
+static inline void fl_wait_rdy(){
+	while(!fl_status().ready);
+}
+
+
 static inline int fl_makeaddr(int adr) {
 	int ret = 0;
-
 	int pagen, shift;
 
 	pagen = adr % 512;
@@ -30,6 +45,7 @@ static inline int fl_makeaddr(int adr) {
 }
 
 int spi_flash_read(char *data, int adr, int size) {
+	fl_wait_rdy();
 	spi2_enable_cs();
 
 	int tmp = CMD_CNTREAD_HF;
@@ -41,22 +57,21 @@ int spi_flash_read(char *data, int adr, int size) {
 	tmp = spi2_read(data, size);
 
 	spi2_disable_cs();
-
 	return tmp;
 }
 
-int spi_flash_write(char *data, int adr, int size) {
+int spi_flash_write_page( int page, char *data,int size) {
+	fl_wait_rdy();
 	spi2_enable_cs();
 
-	int tmp = CMD_MAIN_READ;
+	int tmp = CMD_MAIN_THROUGH_BUF1WRITE;
 	spi2_write((char*) &tmp, 1);
 
-	tmp = fl_makeaddr(adr);
-	spi2_write((char*) &tmp, 4); // with extra dummy-byte
+	tmp = 0 | (page <<8); //block address will be always 0
 
+	spi2_write((char*) &tmp, 3);
 	tmp = spi2_write(data, size);
 
 	spi2_disable_cs();
-
 	return tmp;
 }
