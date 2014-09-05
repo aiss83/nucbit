@@ -20,7 +20,7 @@
 #define UTIL_SPEED 115200
 #define CRCBYTES 2
 //we can't hold more than flash avaible
-#define MAXBUF (MZ_CONFIGSIZE + CRCBYTES+ 2) //2 bytes for command wordstatic unsigned char buf[MAXBUF];
+#define MAXBUF (MZ_CONFIGSIZE + CRCBYTES+ 2) //2 bytes for command wordstatic unsigned char buf*;
 static unsigned int rsize = 0;
 static unsigned int dsize;
 
