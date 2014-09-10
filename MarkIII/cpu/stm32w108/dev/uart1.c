@@ -54,6 +54,7 @@
 
 #include "lib/ringbuf.h"
 
+#include "micro/micro-common.h"
 #include "dev/leds.h"
 
 static int (*uart1_input_handler)(unsigned char c);
@@ -142,6 +143,10 @@ uart1_init(unsigned long ubr)
     uint16_t uartper = (uint32_t)24e6/(2*ubr);
     uint32_t rest = (uint32_t)24e6%(2*ubr);
 
+
+    //TX enable pin for rs422
+    halGpioConfig(UART_TXEN, GPIOCFG_OUT);
+
     SC1_UARTFRAC = 0;
 
     if(rest > (2*ubr)/4 && rest < (3*2*ubr)/4)
@@ -227,11 +232,13 @@ void uart1_tx_interrupt(void)
 
     if(ringbuf_elements(&txbuf) == 0)
     {
+    	halGpioSet(UART_TXEN, FALSE);
         transmitting = 0;
         INT_SC1CFG &= ~INT_SCTXFREE;
     }
     else
     {
+    	halGpioSet(UART_TXEN, TRUE);
         SC1_DATA = ringbuf_get(&txbuf);
     }
 

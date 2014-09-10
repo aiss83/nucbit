@@ -150,7 +150,9 @@ int main(void) {
 	/* Led initialization */
 	leds_init();
 
-	leds_on(LEDS_CONF_BLUE);
+	//leds_on(LEDS_CONF_BLUE);
+	halGpioSet(PORTx_PIN(PORTB, 3), TRUE);
+
 
 	INTERRUPTS_ON()
 	;

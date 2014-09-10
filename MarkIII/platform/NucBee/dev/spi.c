@@ -5,9 +5,10 @@
  *      Author: 17095
  */
 
+#include "platform-conf.h"
 #include "spi.h"
 
-#define SPICSPIN PORTx_PIN(PORTC, 1)
+
 
 int spi2_init(int clk) {
 	int ret = 0;

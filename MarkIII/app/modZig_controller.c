@@ -187,7 +187,7 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 			process_poll(&mesh_controller_process);
 	} else {
 		out_overrun++;
-		leds_toggle(LEDS_CONF_BLUE);
+	//	leds_toggle(LEDS_CONF_BLUE);
 	}
 
 	return ret;

@@ -54,17 +54,17 @@ void leds_arch_init(void) {
 //#ifdef LEDS_CONF_PORT && LEDS_CONF_RED_PIN && EDS_CONF_GREEN_PIN
 	halGpioConfig(PORTx_PIN(LEDS_CONF_PORT, LEDS_CONF_RED_PIN), GPIOCFG_OUT);
 	halGpioConfig(PORTx_PIN(LEDS_CONF_PORT, LEDS_CONF_GREEN_PIN), GPIOCFG_OUT);
-	halGpioConfig(PORTx_PIN(LEDS_CONF_PORT, LEDS_CONF_BLUE_PIN), GPIOCFG_OUT);
+	//halGpioConfig(PORTx_PIN(LEDS_CONF_PORT, LEDS_CONF_BLUE_PIN), GPIOCFG_OUT);
 
 	//  LEDS_PORT |= (LEDS_CONF_RED | LEDS_CONF_GREEN);
-	LEDS_PORT &= ~(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);
+	LEDS_PORT &= ~( LEDS_CONF_RED | LEDS_CONF_GREEN);
 //#endif
 }
 /*---------------------------------------------------------------------------*/
 unsigned char leds_arch_get(void) {
 	//  #ifdef LEDS_CONF_PORT && LEDS_CONF_RED_PIN && LEDS_CONF_GREEN_PIN
 	return ((LEDS_PORT & LEDS_CONF_RED) ? 0 : LEDS_CONF_RED)
-			| ((LEDS_PORT & LEDS_CONF_BLUE) ? 0 : LEDS_CONF_BLUE)
+			//| ((LEDS_PORT & LEDS_CONF_BLUE) ? 0 : LEDS_CONF_BLUE)
 			| ((LEDS_PORT & LEDS_CONF_GREEN) ? 0 : LEDS_CONF_GREEN);
 //#else
 //    return 0;
@@ -73,10 +73,10 @@ unsigned char leds_arch_get(void) {
 /*---------------------------------------------------------------------------*/
 void leds_arch_set(unsigned char leds) {
 //#ifdef LEDS_CONF_PORT && LEDS_CONF_RED_PIN && LEDS_CONF_GREEN_PIN
-	int new = (LEDS_PORT & ~(LEDS_CONF_RED | LEDS_CONF_GREEN | LEDS_CONF_BLUE));
+	int new = (LEDS_PORT & ~(LEDS_CONF_RED | LEDS_CONF_GREEN));
 	//new |=
 			new |= ((leds & LEDS_CONF_RED) ? LEDS_CONF_RED :0 );
-			new |= ((leds & LEDS_CONF_BLUE) ? LEDS_CONF_BLUE :0 );
+		//	new |= ((leds & LEDS_CONF_BLUE) ? LEDS_CONF_BLUE :0 );
 			new |= ((leds & LEDS_CONF_GREEN) ? LEDS_CONF_GREEN:0 );
 	LEDS_PORT = new;
 //#endif

@@ -84,19 +84,23 @@ typedef unsigned long rtimer_clock_t;
 #define RTIMER_CLOCK_LT(a,b)     ((signed short)((a)-(b)) < 0)
 
 /* LEDs ports NUC-216 */
-#define LED_CONF_NET 0
-#define LED_CONF_CPU 2
-#define LED_CONF_SIM 1
+#define LED_CONF_CPU 			3
+#define LED_CONF_RX 			3 //tx
+#define LED_CONF_TX 			4 //rx
 
-#define LEDS_CONF_RED_PIN   LED_CONF_NET
-#define LEDS_CONF_GREEN_PIN   LED_CONF_SIM
-#define LEDS_CONF_BLUE_PIN	LED_CONF_CPU
+#define LEDS_CONF_RED_PIN   	LED_CONF_TX
+#define LEDS_CONF_GREEN_PIN   	LED_CONF_RX
+//#define LEDS_CONF_BLUE_PIN		LED_CONF_CPU
 
-#define LEDS_CONF_PORT      PORTA
-#define LEDS_CONF_RED     (1<<LEDS_CONF_RED_PIN)
-#define LEDS_CONF_GREEN     (1<<LEDS_CONF_GREEN_PIN)
-#define LEDS_CONF_BLUE     (1<<LEDS_CONF_BLUE_PIN)
+#define LEDS_CONF_PORT      	PORTA
+#define LEDS_CONF_RED     		(1<<LEDS_CONF_RED_PIN)
+#define LEDS_CONF_GREEN     	(1<<LEDS_CONF_GREEN_PIN)
+//#define LEDS_CONF_BLUE     		(1<<LEDS_CONF_BLUE_PIN)
 //*/
+
+#define UART_TXEN				PORTx_PIN(PORTB, 5)
+
+#define SPICSPIN 				PORTx_PIN(PORTC, 1)
 
 // Let's try to omit uip
 /*
