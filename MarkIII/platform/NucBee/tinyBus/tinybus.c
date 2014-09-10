@@ -9,6 +9,7 @@
  */
 
 #include "contiki.h"
+#include "mmem.h"
 #include "dev/uart1.h"
 #include "sys/rtimer.h"
 
@@ -21,14 +22,19 @@
 #define MIN(a, b) ((a) < (b)? (a) : (b))
 
 char tinybus_our_packet(unsigned char *ptr);
-static unsigned char outbuf[UART1_CONF_TX_BUFSIZE];
+
 //static char packet_complete = 0;
 static char packet_going = 0;
 static int (*packet_recieved_cb)(unsigned char *ptr, unsigned int size);
 static int tinybus_input_byte(unsigned char c);
 static rtimer_clock_t packet_tout = 0xffffffff;
 
-static unsigned char busBuffer[BUS_BUFFERSIZE];
+/// local buffers
+#define DYNMEMSIZE (UART1_CONF_TX_BUFSIZE+BUS_BUFFERSIZE)
+static unsigned char *outbuf;
+static unsigned char *busBuffer;
+static struct mmem localbuf;
+
 static int rsize = 0;
 static int ssize = 0;
 //static int tr_tot= 0;
@@ -36,7 +42,7 @@ static int ssize = 0;
 static int tb_overrun = 0;
 static struct rtimer rt;
 
-PROCESS(tinybus_controller_process, "tinybus controller");
+PROCESS(tinybus_controller_process, "Tinybus controller");
 
 void tinybus_set_recieve_cb(int (*input)(unsigned char *ptr, unsigned int size)) {
 	//don't registering own uart recieve cb until we have no pstream recieve cb
@@ -57,7 +63,7 @@ static char input_timeout(struct rtimer *t, void *ptr) {
 
 	//
 	//if (tinybus_our_packet(busBuffer))
-		packet_recieved_cb(busBuffer, rsize);
+	packet_recieved_cb(busBuffer, rsize);
 	//tr_tot += rsize;
 	rsize = 0;
 	INTERRUPTS_ON()
@@ -91,8 +97,8 @@ int tinybus_send(unsigned char *ptr, unsigned int size) {
 		memcpy(outbuf, ptr, i);
 		process_poll(&tinybus_controller_process);
 		ssize = i;
-	//	rc_tot += i;
-	}else{
+		//	rc_tot += i;
+	} else {
 		tb_overrun++;
 	}
 	//NOOOOOOOOOOO!!!!!!!!!!!!!!!!1
@@ -107,20 +113,27 @@ int tinybus_send(unsigned char *ptr, unsigned int size) {
 //
 int tinybus_init(unsigned long baud) {
 	int ret = 0;
-	//tinybus_filter_init();
-	///keep it here by now
-	//tinybus_setbypass(TRUE);
-	//uart setup
-	uart1_init(baud);
-	//calculating packet timer
-	packet_tout = RTIMER_ARCH_SECOND / (baud / 9); //1 bit time
-	packet_tout++;
-	//packet_tout *= 9; //8 data bit + 1 stop bit //1 word time
 
-	packet_tout = packet_tout * 3 + packet_tout / 2; //i hope this will work
-	packet_tout++;
-	//inserting receive callback
-	process_start(&tinybus_controller_process, NULL);
+	if (mmem_alloc(&localbuf, DYNMEMSIZE)) {
+		outbuf = MMEM_PTR(&localbuf);
+		busBuffer = outbuf+UART1_CONF_TX_BUFSIZE;
+		//tinybus_filter_init();
+		///keep it here by now
+		//tinybus_setbypass(TRUE);
+		//uart setup
+		uart1_init(baud);
+		//calculating packet timer
+		packet_tout = RTIMER_ARCH_SECOND / (baud / 9); //1 bit time
+		packet_tout++;
+		//packet_tout *= 9; //8 data bit + 1 stop bit //1 word time
+
+		packet_tout = packet_tout * 3 + packet_tout / 2; //i hope this will work
+		packet_tout++;
+		//inserting receive callback
+		process_start(&tinybus_controller_process, NULL);
+	} else {
+		halErrorHalt();
+	}
 	return ret;
 }
 

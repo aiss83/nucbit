@@ -60,7 +60,7 @@ int spi_flash_read(char *data, int adr, int size) {
 	return tmp;
 }
 
-int spi_flash_write_page( int page, char *data,int size) {
+static int spi_flash_write_page( int page, char *data,int size) {
 	fl_wait_rdy();
 	spi2_enable_cs();
 
@@ -75,3 +75,28 @@ int spi_flash_write_page( int page, char *data,int size) {
 	spi2_disable_cs();
 	return tmp;
 }
+
+
+int spi_flash_write(char *data, int adr, int size) {
+	int tmp = 0;
+	short pnum, cpage, wsize;
+	int shift,pos;
+
+	pnum = size / FLPAGESIZE;
+	if (size % FLPAGESIZE)
+		pnum++;
+
+	cpage = adr / FLPAGESIZE;
+	shift = adr - (cpage*FLPAGESIZE);
+
+	for (pos = 0;cpage <= cpage+pnum; cpage++){
+		wsize = min(FLPAGESIZE, size);
+		tmp = spi_flash_write_page(cpage, data[pos], wsize);
+
+		size = size - wsize;
+
+	}
+
+	return tmp;
+}
+

@@ -8,6 +8,8 @@
 #include "error.h"
 #include "hal/micro/cortexm3/flash.h"
 
+#include "mmem.h"
+
 #include "dev/leds.h"
 #include "modzig.h"
 #include <stdio.h>
@@ -20,7 +22,10 @@
 #define UTIL_SPEED 115200
 #define CRCBYTES 2
 //we can't hold more than flash avaible
-#define MAXBUF (MZ_CONFIGSIZE + CRCBYTES+ 2) //2 bytes for command wordstatic unsigned char buf*;
+#define MAXBUF (MZ_CONFIGSIZE + CRCBYTES+ 2) //2 bytes for command word
+
+
+static struct mmem	membuf;static unsigned char *lbuf;
 static unsigned int rsize = 0;
 static unsigned int dsize;
 
@@ -114,7 +119,7 @@ static int utility_input_byte(unsigned char c) {
 			 */
 		default:
 			if (rsize < MAXBUF) {
-				buf[rsize] = c;
+				lbuf[rsize] = c;
 				rsize++;
 			}
 		}
@@ -129,14 +134,14 @@ static int utility_input_byte(unsigned char c) {
 		case ESC_END:
 			c = END;
 			if (rsize < MAXBUF) {
-				buf[rsize] = c;
+				lbuf[rsize] = c;
 				rsize++;
 			}
 			break;
 		case ESC_ESC:
 			c = ESC;
 			if (rsize < MAXBUF) {
-				buf[rsize] = c;
+				lbuf[rsize] = c;
 				rsize++;
 			}
 			break;
@@ -203,12 +208,23 @@ void send_packet(unsigned char *p, int len) {
 }
 
 void utility_mode_init() {
+
+	if (mmem_alloc( &membuf, MAXBUF)){
+
+		lbuf =  (unsigned char *)MMEM_PTR(&membuf);
+
 	uart1_init(UTIL_SPEED);
 	uart1_set_input(utility_input_byte);
 
 	leds_on(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);//mode indication
 
 	process_start(&utility_process, NULL);
+
+
+	}else{
+		//suddenly not enough memory O_o
+		halErrorHalt();
+	}
 }
 /*---------------------------------------------------------------------------*/
 //PROCESS_THREAD(mesh_controller_process, ev, data)
@@ -226,82 +242,60 @@ PROCESS_THREAD(utility_process, ev, data) {
 			//verifying crc first
 			unsigned short crcA, crcB;
 
-			crcB = (unsigned short) ((buf[rsize - CRCBYTES])
-					| (unsigned short) (buf[rsize - CRCBYTES + 1]) << 8);
+			crcB = (unsigned short) ((lbuf[rsize - CRCBYTES])
+					| (unsigned short) (lbuf[rsize - CRCBYTES + 1]) << 8);
 
-			crcA = crc16_ccitt(buf, rsize - CRCBYTES);
-			//crcB = (buf[rsize-CRCBYTES]);
+			crcA = crc16_ccitt(lbuf, rsize - CRCBYTES);
+			//crcB = (lbuf[rsize-CRCBYTES]);
 			//crcB = crcB << 8;
 			if (crcA == crcB) {
 
-				proto_frame_t *pkt = (proto_frame_t *) buf;
+				proto_frame_t *pkt = (proto_frame_t *) lbuf;
 				pf_cmd_e cmd = pkt->cmd;
 				dsize = 4;			//minimal response size
 				switch (cmd) {
 
 				case CMD_PING:
 					pkt->cmd = RPL_PONG;
-
 					break;
 
 				case CMD_READ_CNF:
 					pkt->cmd = RPL_DATA_CNF;
-					memcpy(pkt->data, (int8u*) MZ_CONFIGADDR, MZ_CONFIGSIZE);
+					memcpy(pkt->data, (int8u*) mzCONFIG, MZ_CONFIGSIZE);
 					dsize += MZ_CONFIGSIZE;
-					/*
-					 crcA = crc16_ccitt(buf, rsize - CRCBYTES);
-					 (buf[rsize - CRCBYTES + 1]) = (char)(crcA >>8);
-					 (buf[rsize - CRCBYTES]) = (char)(crcA);
-					 */
 					break;
 
 				case CMD_WRITE_CNF: {
+					int ret = 0;
 					//simply writing to flash
-					StStatus flashStatus;
-					//omiting crc  and cmd bytes
 					int size = (rsize - 3) / 2;
-					//flash work
-					flashStatus = halInternalFlashErase(MFB_PAGE_ERASE,
-					MZ_CONFIGADDR);
-					if (flashStatus == 0) {
-						//restoring default option bytes
-
-						//saving config
-						flashStatus = halInternalFlashWrite(MZ_CONFIGADDR,
-								(int16u*) pkt->data, size);
-
-					}
+					ret = conf_save((char*)pkt->data,size);
 					pkt->cmd = RPL_DATA_STS;
-					pkt->data[0] = flashStatus;
+					pkt->data[0] = ret;
 					dsize += 1;			//space for responce code
 					break;
 				}
+
 				case CMD_GET_MAC:
 					pkt->cmd = RPL_MAC;
 					//int8u *add = ST_RadioGetEui64();
 					memcpy(pkt->data, (int8u*)  &rimeaddr_node_addr, sizeof(rimeaddr_t));
 					dsize += sizeof(rimeaddr_t);
-					/*
-					 crcA = crc16_ccitt(buf, rsize - CRCBYTES);
-					 (buf[rsize - CRCBYTES + 1]) = (char)(crcA >>8);
-					 (buf[rsize - CRCBYTES]) = (char)(crcA);
-					 */
 					break;
 
-					//Filtering erroneous commands
-				default:
 
+				default: //Filtering erroneous commands
 					pkt->cmd = RPL_UNKNOWN_CMD;
 					break;
 				}
 
 				//checksumming
-				crcA = crc16_ccitt(buf, dsize - CRCBYTES);
-				(buf[dsize - CRCBYTES]) = (char) (crcA >> 8);
-				(buf[dsize - CRCBYTES + 1]) = (char) (crcA);
+				crcA = crc16_ccitt(lbuf, dsize - CRCBYTES);
+				(lbuf[dsize - CRCBYTES]) = (char) (crcA >> 8);
+				(lbuf[dsize - CRCBYTES + 1]) = (char) (crcA);
 
 				//reply send
-				send_packet(buf, dsize);
+				send_packet(lbuf, dsize);
 			}
 			//freeing packet buffer
 			rsize = 0;

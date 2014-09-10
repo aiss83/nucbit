@@ -5,6 +5,7 @@
  *      Author: 17095
  */
 #include "contiki.h"
+#include "mmem.h"
 #include "net/rime.h"
 #include "net/rime/mesh.h"
 #include "dev/leds.h"
@@ -22,7 +23,12 @@ static mz_mode_e mode;
 static rimeaddr_t target_addr;
 static int out_overrun = 0;
 static int in_overrun = 0;
-static unsigned char localbuf[256];
+
+static struct mmem databuf;
+static unsigned char *localbuf;
+#define DYNMEMSIZE (PAYLOADSIZE + (PACKETBUF_SIZE + PACKETBUF_HDR_SIZE) / 2 + 1)
+
+
 static int tsize;
 static char packet_sending = 0;
 extern void mesh_inc_tout();
@@ -150,7 +156,7 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 				mz_node_t *n = mzCONFIG->nodeList;
 				for (i = 0; i < (mzCONFIG->recNum) && !found; i++) {
 					for (j = 0; j < n->num && !found; j++) {
-						if (n->mnodes[j] == adr ) {
+						if (n->mnodes[j] == adr) {
 							//memcpy(&target_addr, &n->rnode, sizeof(rimeaddr_t));
 							rimeaddr_copy(&target_addr, &n->rnode);
 
@@ -177,7 +183,7 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 
 		}
 
-		if(packet_sending)
+		if (packet_sending)
 			process_poll(&mesh_controller_process);
 	} else {
 		out_overrun++;
@@ -189,58 +195,59 @@ static int got_packet(unsigned char *ptr, unsigned int size) {
 
 void modZig_controller_init() {
 	//checking for valid config
-	if (mzCONFIG->mode != MZ_MASTER && mzCONFIG->mode != MZ_SLAVE) {
-		//halting
-		while (1) {
-			leds_on(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);
-			watchdog_periodic();
-			clock_delay(5000);
-			leds_off(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);
-			clock_delay(5000);
+
+	if (mmem_alloc(&databuf, DYNMEMSIZE)) {
+
+		localbuf = (unsigned char*)MMEM_PTR(&databuf);
+		packetbuf_setptr(localbuf+PAYLOADSIZE);
+
+		if (mzCONFIG->mode != MZ_MASTER && mzCONFIG->mode != MZ_SLAVE) {
+			halErrorHalt();
 		}
+
+		mode = mzCONFIG->mode;
+		/*
+		 * Patching radio power mode
+		 */
+		short pmode = 0 | (0 << 1)  //ext. transmitter
+				| (1 << 0); //boost mode
+		ST_RadioSetPowerMode(pmode);
+
+		char power = 3;
+		ST_RadioSetPower(power);
+
+		mesh_open(&mesh, 123, &callbacks);
+		tinybus_set_recieve_cb(got_packet);
+
+		tinybus_init(mz_speed_val[mzCONFIG->speed]);
+		process_start(&mesh_controller_process, NULL);
+
+		//moved filtering into got_gacket
+		/*
+		 if (mode == MZ_MASTER) {
+		 //master_mode = 1;
+		 //setting up nodes filters
+		 int i,j;
+		 mz_node_t *n = mzCONFIG->nodeList;
+		 for (i = 0; i < (mzCONFIG->recNum); i++) {
+		 for(j=0;j < n->num;j++){
+		 tinybus_add_node(n->mnodes[j]);
+		 }
+		 //verify shift calculation
+		 n += (sizeof(mz_node_t)+ (n->num - 1));
+		 }
+
+		 } else if (mode == MZ_SLAVE) {
+		 //nothing to do at this point
+		 tinybus_setbypass(TRUE);		//disabling tinybus filters
+		 } else {
+		 while (1) {
+		 //WTF????
+		 }
+		 }
+		 */
+
 	}
-
-	mode = mzCONFIG->mode;
-	/*
-	 * Patching radio power mode
-	 */
-	short pmode = 0 | (0 << 1)  //ext. transmitter
-			| (1 << 0); //boost mode
-	ST_RadioSetPowerMode(pmode);
-
-	char power = 3;
-	ST_RadioSetPower(power);
-
-	mesh_open(&mesh, 123, &callbacks);
-	tinybus_set_recieve_cb(got_packet);
-
-	tinybus_init(mz_speed_val[mzCONFIG->speed]);
-	process_start(&mesh_controller_process, NULL);
-
-	//moved filtering into got_gacket
-	/*
-	 if (mode == MZ_MASTER) {
-	 //master_mode = 1;
-	 //setting up nodes filters
-	 int i,j;
-	 mz_node_t *n = mzCONFIG->nodeList;
-	 for (i = 0; i < (mzCONFIG->recNum); i++) {
-	 for(j=0;j < n->num;j++){
-	 tinybus_add_node(n->mnodes[j]);
-	 }
-	 //verify shift calculation
-	 n += (sizeof(mz_node_t)+ (n->num - 1));
-	 }
-
-	 } else if (mode == MZ_SLAVE) {
-	 //nothing to do at this point
-	 tinybus_setbypass(TRUE);		//disabling tinybus filters
-	 } else {
-	 while (1) {
-	 //WTF????
-	 }
-	 }
-	 */
 }
 /*---------------------------------------------------------------------------*/
 //PROCESS_THREAD(mesh_controller_process, ev, data)

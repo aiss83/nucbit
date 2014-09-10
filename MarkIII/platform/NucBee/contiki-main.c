@@ -67,6 +67,7 @@
 //#include "net/uip.h"
 
 #include "app/modzig.h"
+#include "app/mzConfig.h"
 
 #if WITH_UIP6
 #include "net/uip-ds6.h"
@@ -227,6 +228,9 @@ int main(void) {
 
 	}
 */
+	///Initializing config table storage
+	 conf_init();
+
 	/**
 	 * Here will be mode select depending on some pin state
 	 */

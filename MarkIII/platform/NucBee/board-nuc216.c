@@ -137,3 +137,18 @@ void halBoardPowerUp(void)
     halGpioSet(PORTx_PIN(PORTA, 6), TRUE);
     halGpioSet(PORTx_PIN(PORTA, 7), TRUE);
 }
+
+
+void halErrorHalt(){
+	//halting
+	while (1) {
+		leds_on(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);
+		watchdog_periodic();
+		clock_delay(5000);
+		leds_off(LEDS_CONF_BLUE | LEDS_CONF_RED | LEDS_CONF_GREEN);
+		clock_delay(5000);
+	}
+
+}
+
+

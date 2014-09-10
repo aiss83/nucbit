@@ -50,4 +50,13 @@ typedef struct {
 	unsigned char ready:1;
 } sflast_stsreg_t;
 
+#define FLPAGESIZE 512
+#define FLBLOCKSIZE 512
+
+
+int spi_flash_init();
+int spi_flash_read(char *data, int adr, int size);
+int spi_flash_write(char *data, int adr, int size);
+
+
 #endif /* SPI_FLASH_H_ */

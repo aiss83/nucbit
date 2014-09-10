@@ -8,10 +8,11 @@
 #ifndef MZCONFIG_H_
 #define MZCONFIG_H_
 
+#include "rimeaddr.h"
+#include "dev/spi_flash.h"
 
-#define MZ_CONFIGSIZE (MFB_PAGE_SIZE_B * 1)
-#define MZ_CONFIGADDR (MFB_TOP - (MFB_PAGE_SIZE_B*2) - MZ_CONFIGSIZE+1)
-
+#define MZ_CONFIGSIZE 1024//(FLPAGESIZE * 2) //1KB
+#define MZ_CONFIGADDR 0 //(MFB_TOP - (MFB_PAGE_SIZE_B*2) - MZ_CONFIGSIZE+1)
 
 
 /**
@@ -90,7 +91,11 @@ typedef struct{
 } mz_settings_t;
 
 
+extern mz_settings_t *mzCONFIG;
+//#define mzCONFIG ((mz_settings_t*) MZ_CONFIGADDR )
 
-#define mzCONFIG ((mz_settings_t*) MZ_CONFIGADDR )
+
+int conf_init() ;
+int conf_save(char *data, int size);
 
 #endif /* MZCONFIG_H_ */

@@ -162,7 +162,9 @@
 
 
 //buffer size for modbus transmission
-#define BUS_BUFFERSIZE 256
+#define PAYLOADSIZE 256
+#define BUS_BUFFERSIZE PAYLOADSIZE
+
 
 #define CONF_MESH_PACKET_TIMEOUT CLOCK_SECOND/10
 

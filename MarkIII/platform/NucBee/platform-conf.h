@@ -44,6 +44,8 @@
 
 #include PLATFORM_HEADER
 
+#define MMEM_CONF_SIZE 3072
+
 #include <inttypes.h>
 #include <string.h>  // For memcmp().
 #include <hal/micro/cortexm3/memmap.h>
@@ -62,7 +64,7 @@
 typedef unsigned short uip_stats_t;
 
 #define UART1_CONF_TX_WITH_INTERRUPT    1
-#define UART1_CONF_TX_BUFSIZE 260
+#define UART1_CONF_TX_BUFSIZE (PAYLOADSIZE + 4)
 #define PACKETBUF_CONF_SIZE UART1_CONF_TX_BUFSIZE
 //#define WITH_SERIAL_LINE_INPUT      1
 
