@@ -44,7 +44,7 @@
 
 #include PLATFORM_HEADER
 
-#define MMEM_CONF_SIZE 3072
+#define MMEM_CONF_SIZE 3400
 
 #include <inttypes.h>
 #include <string.h>  // For memcmp().
@@ -92,7 +92,7 @@ typedef unsigned long rtimer_clock_t;
 #define LEDS_CONF_GREEN_PIN   	LED_CONF_RX
 //#define LEDS_CONF_BLUE_PIN		LED_CONF_CPU
 
-#define LEDS_CONF_PORT      	PORTA
+#define LEDS_CONF_PORT      	PORTB
 #define LEDS_CONF_RED     		(1<<LEDS_CONF_RED_PIN)
 #define LEDS_CONF_GREEN     	(1<<LEDS_CONF_GREEN_PIN)
 //#define LEDS_CONF_BLUE     		(1<<LEDS_CONF_BLUE_PIN)

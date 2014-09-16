@@ -8,8 +8,24 @@
 #include "spi.h"
 #include "spi_flash.h"
 
+#define min(a,b) (a>b?b:a)
+
 int spi_flash_init() {
 	int ret = 0;
+
+	ret =  spi2_init(1000);
+
+	if (ret ==0){
+		spi2_enable_cs();
+		//checking dev ID
+		int tmp = CMD_READ_ID;
+		spi2_write((char*) &tmp, 1);
+		tmp = 0;
+		spi2_read((char*) &tmp, 2);
+
+		spi2_disable_cs();
+	}
+
 
 	return ret;
 }
@@ -35,7 +51,6 @@ static inline int fl_makeaddr(int adr) {
 	int pagen, shift;
 
 	pagen = adr % 512;
-
 	shift = adr - (pagen * 512);
 
 	//fine shift
@@ -67,7 +82,7 @@ static int spi_flash_write_page( int page, char *data,int size) {
 	int tmp = CMD_MAIN_THROUGH_BUF1WRITE;
 	spi2_write((char*) &tmp, 1);
 
-	tmp = 0 | (page <<8); //block address will be always 0
+	tmp = 0 | (0 << 14) | (page <<3); //block address will be always 0
 
 	spi2_write((char*) &tmp, 3);
 	tmp = spi2_write(data, size);
@@ -79,22 +94,22 @@ static int spi_flash_write_page( int page, char *data,int size) {
 
 int spi_flash_write(char *data, int adr, int size) {
 	int tmp = 0;
-	short pnum, cpage, wsize;
+	short pnum, spage, cpage, wsize;
 	int shift,pos;
 
 	pnum = size / FLPAGESIZE;
 	if (size % FLPAGESIZE)
 		pnum++;
 
-	cpage = adr / FLPAGESIZE;
+	spage = cpage = adr / FLPAGESIZE;
 	shift = adr - (cpage*FLPAGESIZE);
 
-	for (pos = 0;cpage <= cpage+pnum; cpage++){
+	for (pos = 0;cpage < spage+pnum; cpage++){
 		wsize = min(FLPAGESIZE, size);
-		tmp = spi_flash_write_page(cpage, data[pos], wsize);
+		tmp += spi_flash_write_page(cpage, &data[pos], wsize);
 
 		size = size - wsize;
-
+		pos += wsize;
 	}
 
 	return tmp;

@@ -57,6 +57,7 @@
 #include "dev/temperature-sensor.h"
 #include "dev/acc-sensor.h"
 #include "dev/uart1.h"
+#include "mmem.h"
 //#include "dev/serial-line.h"
 
 #include "dev/stm32w-radio.h"
@@ -151,7 +152,7 @@ int main(void) {
 	leds_init();
 
 	//leds_on(LEDS_CONF_BLUE);
-	halGpioSet(PORTx_PIN(PORTB, 3), TRUE);
+
 
 
 	INTERRUPTS_ON()
@@ -230,6 +231,9 @@ int main(void) {
 
 	}
 */
+	//turning on dynamic memory allocator
+	mmem_init();
+
 	///Initializing config table storage
 	 conf_init();
 

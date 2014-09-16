@@ -13,7 +13,15 @@
 int spi2_init(int clk) {
 	int ret = 0;
 
+
+	halGpioConfig(PORTx_PIN(PORTA, 0), GPIOCFG_OUT_ALT);
+	halGpioConfig(PORTx_PIN(PORTA, 1), GPIOCFG_IN);
+	halGpioConfig(PORTx_PIN(PORTA, 2), 0xB);//special mode for pin
+
 	halGpioConfig(SPICSPIN, GPIOCFG_OUT);
+
+	spi2_disable_cs();
+
 
 	SC2_MODE = 2; //SPI mode
 
@@ -73,9 +81,9 @@ int spi2_write(char* data, int size) {
 
 
 void spi2_enable_cs(){
-	halGpioSet(SPICSPIN, TRUE);
+	halGpioSet(SPICSPIN, FALSE);
 }
 
 void spi2_disable_cs(){
-	halGpioSet(SPICSPIN, FALSE);
+	halGpioSet(SPICSPIN, TRUE);
 }

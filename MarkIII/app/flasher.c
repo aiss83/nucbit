@@ -242,7 +242,7 @@ PROCESS_THREAD(utility_process, ev, data) {
 			//verifying crc first
 			unsigned short crcA, crcB;
 
-			crcB = (unsigned short) ((lbuf[rsize - CRCBYTES])
+ 			crcB = (unsigned short) ((lbuf[rsize - CRCBYTES])
 					| (unsigned short) (lbuf[rsize - CRCBYTES + 1]) << 8);
 
 			crcA = crc16_ccitt(lbuf, rsize - CRCBYTES);
@@ -268,7 +268,7 @@ PROCESS_THREAD(utility_process, ev, data) {
 				case CMD_WRITE_CNF: {
 					int ret = 0;
 					//simply writing to flash
-					int size = (rsize - 3) / 2;
+					int size = (rsize - 3);
 					ret = conf_save((char*)pkt->data,size);
 					pkt->cmd = RPL_DATA_STS;
 					pkt->data[0] = ret;

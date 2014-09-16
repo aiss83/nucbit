@@ -39,6 +39,8 @@ typedef enum {
 
 	CMD_READ_STS = 0xd7,
 
+	CMD_READ_ID = 0x9f,
+
 } sflash_cmd_t;
 
 

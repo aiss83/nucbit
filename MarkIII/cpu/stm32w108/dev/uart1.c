@@ -80,6 +80,16 @@ static struct ringbuf txbuf;
 static uint8_t txbuf_data[UART1_TX_BUFSIZE];
 #endif /* TX_WITH_INTERRUPT */
 
+#define TX_ON 	halGpioSet(UART_TXEN, TRUE)
+#define TX_OFF	halGpioSet(UART_TXEN, FALSE)
+
+
+static inline void uart_outchar(unsigned char c){
+	TX_ON;
+	SC1_DATA = c;
+
+}
+
 /*---------------------------------------------------------------------------*/
 //uint8_t
 //uart1_active(void)
@@ -108,10 +118,15 @@ uart1_writeb(unsigned char c)
        the first byte into the UART. */
     if(transmitting == 0)
     {
+
         transmitting = 1;
+        /*
+        halGpioSet(UART_TXEN, TRUE);
         SC1_DATA = ringbuf_get(&txbuf);
-        INT_SC1FLAG = INT_SCTXFREE;
-        INT_SC1CFG |= INT_SCTXFREE;
+        */
+        uart_outchar(ringbuf_get(&txbuf));
+        INT_SC1FLAG = INT_SCTXFREE | INT_SCTXIDLE;
+        INT_SC1CFG |= INT_SCTXFREE | INT_SCTXIDLE;
     }
 
 #else /* TX_WITH_INTERRUPT */
@@ -146,6 +161,8 @@ uart1_init(unsigned long ubr)
 
     //TX enable pin for rs422
     halGpioConfig(UART_TXEN, GPIOCFG_OUT);
+
+    TX_OFF;
 
     SC1_UARTFRAC = 0;
 
@@ -202,11 +219,13 @@ void halSc1Isr(void)
         INT_SC1FLAG = INT_SCTXFREE;
     }
 #endif /* TX_WITH_INTERRUPT */
-    //don't know which int symbol
-    else if (INT_SC1FLAG & 4){
 
-    	int a= 0;
-    	a--;
+    //Shutting down TX_EN when transmission complete
+    if (INT_SC1FLAG & INT_SCTXIDLE){
+    	if (!transmitting){
+    		TX_OFF;
+    		INT_SC1CFG &= ~INT_SCTXIDLE;
+    	}
     }
 
     ENERGEST_OFF(ENERGEST_TYPE_IRQ);
@@ -232,14 +251,16 @@ void uart1_tx_interrupt(void)
 
     if(ringbuf_elements(&txbuf) == 0)
     {
-    	halGpioSet(UART_TXEN, FALSE);
-        transmitting = 0;
+    	transmitting = 0;
         INT_SC1CFG &= ~INT_SCTXFREE;
     }
     else
     {
+    	/*
     	halGpioSet(UART_TXEN, TRUE);
         SC1_DATA = ringbuf_get(&txbuf);
+        */
+    	uart_outchar(ringbuf_get(&txbuf));
     }
 
 }
