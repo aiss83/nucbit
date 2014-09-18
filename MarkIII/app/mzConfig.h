@@ -11,7 +11,7 @@
 #include "rimeaddr.h"
 #include "dev/spi_flash.h"
 
-#define MZ_CONFIGSIZE 1024//(FLPAGESIZE * 2) //1KB
+#define MZ_CONFIGSIZE 1536//(FLPAGESIZE * 2) //1.5KB
 #define MZ_CONFIGADDR 0 //(MFB_TOP - (MFB_PAGE_SIZE_B*2) - MZ_CONFIGSIZE+1)
 
 

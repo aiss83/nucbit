@@ -60,7 +60,7 @@
 #ifdef RIMEADDR_CONF_SIZE
 #define RIMEADDR_SIZE RIMEADDR_CONF_SIZE
 #else /* RIMEADDR_SIZE */
-#define RIMEADDR_SIZE 2
+#define RIMEADDR_SIZE 4
 #endif /* RIMEADDR_SIZE */
 
 typedef union {

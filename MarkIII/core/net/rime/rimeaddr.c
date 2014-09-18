@@ -48,11 +48,13 @@
 rimeaddr_t rimeaddr_node_addr;
 #if RIMEADDR_SIZE == 2
 const rimeaddr_t rimeaddr_null = { { 0, 0 } };
-#else /*RIMEADDR_SIZE == 2*/
-#if RIMEADDR_SIZE == 8
+/*RIMEADDR_SIZE == 2*/
+#elif (RIMEADDR_SIZE == 4)
+const rimeaddr_t rimeaddr_null = { { 0, 0, 0, 0 } };
+#elif (RIMEADDR_SIZE == 8)
 const rimeaddr_t rimeaddr_null = { { 0, 0, 0, 0, 0, 0, 0, 0 } };
 #endif /*RIMEADDR_SIZE == 8*/
-#endif /*RIMEADDR_SIZE == 2*/
+
 
 
 /*---------------------------------------------------------------------------*/
